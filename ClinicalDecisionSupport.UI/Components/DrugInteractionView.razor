@@ -1,0 +1,95 @@
+﻿@using ClinicalDecisionSupport.UI.Models
+@using Microsoft.AspNetCore.Components
+
+@if (Results != null && Results.Count > 0)
+{
+    foreach (var drug in Results)
+    {
+        <div class="drug-card">
+
+            <h5>
+                @drug.Drug
+                <span class="drug-status @GetStatusClass(drug.Status)">
+                    @drug.Status
+                </span>
+            </h5>
+
+            @if (drug.Interactions != null && drug.Interactions.Count > 0)
+            {
+                <table class="drug-table">
+                    <thead>
+                        <tr>
+                            <th>Interacts With</th>
+                            <th>Severity</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var interaction in drug.Interactions)
+                        {
+                            <tr class="@GetSeverityClass(interaction.Severity)">
+                                <td>@interaction.InteractsWith</td>
+                                <td>@interaction.Severity</td>
+                                <td>@interaction.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(drug.AllergyConflict))
+            {
+                <div class="drug-alert">
+                    <strong>Allergy Conflict:</strong> @drug.AllergyConflict
+                </div>
+            }
+
+            @if (drug.Contraindications != null && drug.Contraindications.Count > 0)
+            {
+                <div class="drug-alert">
+                    <strong>Contraindications:</strong>
+                    <ul>
+                        @foreach (var item in drug.Contraindications)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(drug.Recommendation))
+            {
+                <div class="drug-recommendation">
+                    <strong>Recommendation:</strong> @drug.Recommendation
+                </div>
+            }
+
+        </div>
+    }
+}
+
+@code {
+
+    [Parameter]
+    public List<DrugInteractionResult>? Results { get; set; }
+
+    private static string GetStatusClass(string status)
+    {
+        return status switch
+        {
+            "Unsafe" => "drug-unsafe",
+            "Caution" => "drug-caution",
+            _ => "drug-safe"
+        };
+    }
+
+    private static string GetSeverityClass(string severity)
+    {
+        return severity switch
+        {
+            "Major" => "severity-major",
+            "Moderate" => "severity-moderate",
+            _ => "severity-minor"
+        };
+    }
+}

@@ -1,0 +1,71 @@
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+<div class="medical-card mb-3 @ColorClass @(isExpanded ? "shadow" : "")" style="transition: all 0.2s ease;">
+    <div class="medical-card-header bg-white py-3" style="cursor: pointer;" @onclick="Toggle">
+        <div class="d-flex align-items-center w-100">
+            <div class="status-icon-wrapper me-3">
+                <i class="bi @Icon fs-5 @(Status == "Running" ? "text-primary pulse" : (Status == "Complete" ? "text-success" : "text-muted"))"></i>
+            </div>
+            <div class="flex-grow-1">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold">@Name</h6>
+                    <span class="badge @(Status == "Running" ? "bg-primary" : (Status == "Complete" ? "bg-success" : "bg-light text-dark")) rounded-pill small">
+                        @Status
+                    </span>
+                </div>
+            </div>
+            <div class="ms-2">
+                <i class="bi @(isExpanded ? "bi-chevron-up" : "bi-chevron-down") text-muted"></i>
+            </div>
+        </div>
+    </div>
+    
+    @if (isExpanded)
+    {
+        <div class="medical-card-body pt-0 border-top mt-2">
+            @if (!string.IsNullOrEmpty(Payload))
+            {
+                <div class="markdown-content mt-3 overflow-auto" style="max-height: 500px;">
+                    @((MarkupString)Payload)
+                </div>
+            }
+            else
+            {
+                <div class="text-center py-4 text-muted small">
+                    <i class="bi bi-clock-history d-block mb-2 fs-4"></i>
+                    No evidence data available yet.
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public string Name { get; set; } = "";
+    [Parameter] public string Status { get; set; } = "Idle";
+    [Parameter] public string? Payload { get; set; }
+    [Parameter] public string Icon { get; set; } = "bi-cpu";
+    [Parameter] public string ColorClass { get; set; } = "";
+    
+    private bool isExpanded = false;
+
+    private void Toggle()
+    {
+        if (Status != "Idle")
+        {
+            isExpanded = !isExpanded;
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        // Auto-expand if it just finished or started
+        if (Status == "Running" || Status == "Complete")
+        {
+            // Only auto-expand once when it transitions from Idle
+            // Actually, user wants to expand themselves, but maybe auto-expand first update?
+            // Let's keep it manual as per "user can expand and see the output themselves"
+        }
+    }
+}

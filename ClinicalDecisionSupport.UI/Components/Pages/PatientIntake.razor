@@ -1,0 +1,316 @@
+@page "/patient-intake"
+@using ClinicalDecisionSupport.UI.Models
+@using ClinicalDecisionSupport.UI.Services
+@attribute [Authorize(Roles = "Physician,Nurse")]
+@inject UserPersonaService PersonaService
+@inject NavigationManager Navigation
+@inject HttpClient Http
+
+<PageTitle>New Patient Intake | Healware</PageTitle>
+
+<div class="fade-in">
+    <div class="mb-4 d-flex justify-content-between align-items-end">
+        <div>
+            <h3 class="mb-1">New Patient Intake</h3>
+            <p class="text-muted">Register a new patient and record comprehensive clinical data to FHIR.</p>
+        </div>
+        <div class="mb-2">
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2">
+                <i class="bi bi-person-plus-fill me-2"></i>FHIR ID: Auto-Generated
+            </span>
+        </div>
+    </div>
+
+    @if (PersonaService.CurrentRole != UserRole.Nurse && PersonaService.CurrentRole != UserRole.Physician)
+    {
+        <div class="alert alert-danger d-flex align-items-center rounded-4 shadow-sm">
+            <i class="bi bi-shield-lock-fill fs-3 me-3"></i>
+            <div>
+                <h5 class="alert-heading">Access Denied</h5>
+                <p class="mb-0">Your current role (@PersonaService.CurrentRole) does not have permission to register new patients. Please switch to <strong>Nurse</strong> or <strong>Physician</strong>.</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-9">
+                <!-- Section 1: Demographics -->
+                <div class="medical-card mb-4">
+                    <div class="medical-card-header bg-white d-flex align-items-center">
+                        <div class="badge bg-primary me-2">1</div>
+                        <h5 class="mb-0">Demographics</h5>
+                    </div>
+                    <div class="medical-card-body p-4">
+                        <div class="row g-4">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold small text-uppercase">First Name</label>
+                                <input type="text" class="form-control form-control-lg" placeholder="John" @bind="intakeModel.FirstName" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold small text-uppercase">Last Name</label>
+                                <input type="text" class="form-control form-control-lg" placeholder="Doe" @bind="intakeModel.LastName" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold small text-uppercase">Gender</label>
+                                <select class="form-select form-select-lg" @bind="intakeModel.Gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold small text-uppercase">Date of Birth</label>
+                                <input type="date" class="form-control form-control-lg" @bind="intakeModel.BirthDate" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Vitals & Symptoms -->
+                <div class="medical-card mb-4">
+                    <div class="medical-card-header bg-white d-flex align-items-center">
+                        <div class="badge bg-primary me-2">2</div>
+                        <h5 class="mb-0">Vitals & Symptoms</h5>
+                    </div>
+                    <div class="medical-card-body p-4">
+                        <div class="row g-4 mb-4">
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold small text-uppercase">Blood Pressure</label>
+                                <input type="text" class="form-control" placeholder="120/80" @bind="intakeModel.BloodPressure" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold small text-uppercase">Heart Rate (bpm)</label>
+                                <input type="number" class="form-control" @bind="intakeModel.HeartRate" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold small text-uppercase">Temp (°F)</label>
+                                <input type="number" step="0.1" class="form-control" @bind="intakeModel.Temperature" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-bold small text-uppercase">Allergies (Comma separated)</label>
+                                <input type="text" class="form-control" placeholder="Penicillin, Peanuts..." @bind="rawAllergies" />
+                            </div>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase">Chief Complaint</label>
+                                <textarea class="form-control" rows="3" placeholder="Primary reason for visit..." @bind="intakeModel.ChiefComplaint"></textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small text-uppercase">Detailed Symptoms Checklist</label>
+                                <textarea class="form-control" rows="3" placeholder="Fatigue, thirst, frequent urination..." @bind="intakeModel.Symptoms"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Lab Results Grid -->
+                <div class="medical-card mb-4">
+                    <div class="medical-card-header bg-white d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="badge bg-primary me-2">3</div>
+                            <h5 class="mb-0">Lab Results Entry</h5>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary" @onclick="AddLabRow">
+                            <i class="bi bi-plus-lg me-1"></i> Add Test
+                        </button>
+                    </div>
+                    <div class="medical-card-body p-0">
+                        <table class="table table-hover clinical-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Test Name</th>
+                                    <th>Value</th>
+                                    <th>Unit</th>
+                                    <th style="width: 50px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var lab in intakeModel.Labs)
+                                {
+                                    <tr>
+                                        <td><input type="text" class="form-control form-control-sm border-0 bg-transparent" placeholder="e.g. Glucose" @bind="lab.TestName" /></td>
+                                        <td><input type="number" step="0.01" class="form-control form-control-sm border-0 bg-transparent" @bind="lab.Value" /></td>
+                                        <td><input type="text" class="form-control form-control-sm border-0 bg-transparent" placeholder="mg/dL" @bind="lab.Unit" /></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-link text-danger p-0" @onclick="() => intakeModel.Labs.Remove(lab)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                                @if (!intakeModel.Labs.Any())
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center py-4 text-muted small italic">No lab results added. Click "Add Test" to start.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Section 4: Current Medications -->
+                <div class="medical-card mb-5">
+                    <div class="medical-card-header bg-white d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="badge bg-primary me-2">4</div>
+                            <h5 class="mb-0">Medication List</h5>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary" @onclick="AddMedRow">
+                            <i class="bi bi-plus-lg me-1"></i> Add Medication
+                        </button>
+                    </div>
+                    <div class="medical-card-body p-0">
+                        <table class="table table-hover clinical-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Medication Name</th>
+                                    <th>Dosage</th>
+                                    <th>Frequency</th>
+                                    <th style="width: 50px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var med in intakeModel.Medications)
+                                {
+                                    <tr>
+                                        <td><input type="text" class="form-control form-control-sm border-0 bg-transparent" placeholder="Metformin" @bind="med.Name" /></td>
+                                        <td><input type="text" class="form-control form-control-sm border-0 bg-transparent" placeholder="500mg" @bind="med.Dosage" /></td>
+                                        <td><input type="text" class="form-control form-control-sm border-0 bg-transparent" placeholder="BID" @bind="med.Frequency" /></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-link text-danger p-0" @onclick="() => intakeModel.Medications.Remove(med)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                                @if (!intakeModel.Medications.Any())
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center py-4 text-muted small italic">No medications recorded.</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="alert alert-danger mb-4 shadow-sm rounded-4">@errorMessage</div>
+                }
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-5">
+                    <button class="btn btn-outline-secondary px-5 rounded-pill" @onclick='() => Navigation.NavigateTo("/")'>Cancel</button>
+                    <button class="btn btn-primary px-5 rounded-pill shadow" @onclick="SubmitIntake" disabled="@isSaving">
+                        @if (isSaving)
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                            <span>Saving to FHIR...</span>
+                        }
+                        else
+                        {
+                            <i class="bi bi-cloud-arrow-up-fill me-2"></i>
+                            <span>Finalize & Save to FHIR Server</span>
+                        }
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="medical-card bg-light border-0 shadow-sm sticky-top" style="top: 2rem">
+                    <div class="medical-card-body p-4">
+                        <h6 class="fw-bold mb-3 d-flex align-items-center">
+                            <i class="bi bi-info-circle-fill text-primary me-2"></i> Clinical Intake Guidelines
+                        </h6>
+                        <div class="small text-muted mb-4">
+                            Ensure all data points are derived from verified clinical observations.
+                        </div>
+                        <div class="mb-3">
+                            <label class="fw-bold small text-uppercase d-block mb-1">Standard Identifiers</label>
+                            <div class="p-2 bg-white rounded border small">
+                                The system will automatically assign a <code>cdss-patient-XXXX</code> identifier to this record.
+                            </div>
+                        </div>
+                        <div class="alert alert-info py-2 px-3 rounded-3 small border-0 mb-0">
+                            <i class="bi bi-lightbulb me-1"></i> Data entered here directly impacts the multi-agent diagnostic accuracy.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private IntakeModel intakeModel = new();
+    private string rawAllergies = "";
+    private bool isSaving = false;
+    private string? errorMessage;
+
+    private class IntakeModel
+    {
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+        public string Gender { get; set; } = "male";
+        public DateOnly BirthDate { get; set; } = DateOnly.FromDateTime(DateTime.Now.AddYears(-30));
+        public string BloodPressure { get; set; } = "";
+        public double HeartRate { get; set; } = 72;
+        public double Temperature { get; set; } = 98.6;
+        public string ChiefComplaint { get; set; } = "";
+        public string Symptoms { get; set; } = "";
+        public List<string> Allergies { get; set; } = new();
+        public List<LabEntry> Labs { get; set; } = new();
+        public List<MedicationEntry> Medications { get; set; } = new();
+    }
+
+    public class LabEntry { public string TestName { get; set; } = ""; public double Value { get; set; } public string Unit { get; set; } = ""; }
+    public class MedicationEntry { public string Name { get; set; } = ""; public string Dosage { get; set; } = ""; public string Frequency { get; set; } = ""; }
+
+    private void AddLabRow() => intakeModel.Labs.Add(new LabEntry());
+    private void AddMedRow() => intakeModel.Medications.Add(new MedicationEntry());
+
+    private async Task SubmitIntake()
+    {
+        if (string.IsNullOrEmpty(intakeModel.FirstName) || string.IsNullOrEmpty(intakeModel.LastName))
+        {
+            errorMessage = "Patient name is required.";
+            return;
+        }
+
+        // Process allergies
+        intakeModel.Allergies = rawAllergies.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                                           .Select(a => a.Trim())
+                                           .ToList();
+
+        isSaving = true;
+        errorMessage = null;
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("api/clinical-assessment/intake", intakeModel);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<System.Text.Json.JsonElement>();
+                string pid = result.GetProperty("customId").GetString() ?? "";
+                Navigation.NavigateTo($"/patient-review/{pid}");
+            }
+            else
+            {
+                var error = await response.Content.ReadAsStringAsync();
+                errorMessage = $"FHIR Save Failed: {error}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"An unexpected error occurred: {ex.Message}";
+        }
+        finally
+        {
+            isSaving = false;
+        }
+    }
+}

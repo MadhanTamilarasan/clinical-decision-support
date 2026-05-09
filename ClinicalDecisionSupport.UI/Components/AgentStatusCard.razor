@@ -1,0 +1,25 @@
+<div class="d-flex align-items-center justify-content-between p-3 border rounded-3 @(Status == "Running" ? "bg-primary bg-opacity-10 border-primary" : "bg-white")">
+    <div class="d-flex align-items-center">
+        <div class="rounded-3 p-2 me-3 @(Status == "Complete" ? "bg-success text-white" : Status == "Running" ? "bg-primary text-white pulse" : "bg-light text-muted")">
+            <i class="bi @Icon fs-5"></i>
+        </div>
+        <div>
+            <div class="fw-bold" style="font-size: 0.9rem;">@Name</div>
+            <div class="small @(Status == "Complete" ? "text-success" : Status == "Running" ? "text-primary fw-medium" : "text-muted")">@Status</div>
+        </div>
+    </div>
+    @if (Status == "Complete")
+    {
+        <i class="bi bi-check-circle-fill text-success"></i>
+    }
+    else if (Status == "Running")
+    {
+        <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+    }
+</div>
+
+@code {
+    [Parameter] public string Name { get; set; } = "";
+    [Parameter] public string Status { get; set; } = "Idle";
+    [Parameter] public string Icon { get; set; } = "bi-cpu";
+}

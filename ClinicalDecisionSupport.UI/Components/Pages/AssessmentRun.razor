@@ -1,0 +1,325 @@
+@page "/assessment-run/{PatientId}"
+@using Microsoft.AspNetCore.SignalR.Client
+@using ClinicalDecisionSupport.UI.Models
+@using ClinicalDecisionSupport.UI.Components.Shared
+@using ClinicalDecisionSupport.UI.Services
+@attribute [Authorize]
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@inject UserPersonaService PersonaService
+@implements IAsyncDisposable
+
+<PageTitle>Live Assessment - Healware</PageTitle>
+
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h2 class="mb-1 fw-bold text-primary">Intelligent Triage Engine</h2>
+            <p class="text-muted mb-0">Multi-Agent Orchestration in Progress for Patient: <strong>@PatientId</strong></p>
+        </div>
+        <div class="d-flex align-items-center">
+            @if (isComplete)
+            {
+                <span class="badge bg-success rounded-pill px-3 py-2 fade-in">
+                    <i class="bi bi-check-circle-fill me-1"></i> Consensus Reached
+                </span>
+            }
+            else
+            {
+                <div class="d-flex align-items-center text-primary small fw-bold">
+                    <div class="spinner-grow spinner-grow-sm me-2"></div>
+                    Agents Processing...
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="dossier-flow">
+        <!-- 1. Symptoms -->
+        <div class="dossier-section @(symptomsStatus != "Idle" ? "active" : "") @(symptomsStatus == "Complete" ? "completed" : "")">
+            <div class="dossier-badge">1</div>
+            <div class="ms-3">
+                <h5 class="fw-bold mb-3">Symptoms Analysis</h5>
+                <div class="dossier-content">
+                    @if (symptomsStatus == "Idle") { <div class="p-4 text-muted small text-center italic">Awaiting intake data...</div> }
+                    else if (symptomsStatus == "Running") { <div class="p-4 text-center"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Analyzing symptoms...</div> }
+                    else { <div class="p-0 fade-in"><div class="markdown-content p-4">@((MarkupString)(symptomsPayload ?? ""))</div></div> }
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Labs -->
+        <div class="dossier-section @(labStatus != "Idle" ? "active" : "") @(labStatus == "Complete" ? "completed" : "")">
+            <div class="dossier-badge">2</div>
+            <div class="ms-3">
+                <h5 class="fw-bold mb-3">Laboratory Interpretation</h5>
+                <div class="dossier-content">
+                    @if (labStatus == "Idle") { <div class="p-4 text-muted small text-center">Pending lab results...</div> }
+                    else if (labStatus == "Running") { <div class="p-4 text-center"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Interpreting bio-markers...</div> }
+                    else { <div class="p-0 fade-in"><div class="markdown-content p-4">@((MarkupString)(labPayload ?? ""))</div></div> }
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Treatment -->
+        <div class="dossier-section @(treatmentStatus != "Idle" ? "active" : "") @(treatmentStatus == "Complete" ? "completed" : "")">
+            <div class="dossier-badge">3</div>
+            <div class="ms-3">
+                <h5 class="fw-bold mb-3">Treatment Strategy</h5>
+                <div class="dossier-content">
+                    @if (treatmentStatus == "Idle") { <div class="p-4 text-muted small text-center">Awaiting diagnostic consensus...</div> }
+                    else if (treatmentStatus == "Running") { <div class="p-4 text-center"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Drafting intervention plan...</div> }
+                    else { <div class="p-0 fade-in"><div class="markdown-content p-4">@((MarkupString)(treatmentPayload ?? ""))</div></div> }
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Drug -->
+        <div class="dossier-section @(interactionStatus != "Idle" ? "active" : "") @(interactionStatus == "Complete" ? "completed" : "")">
+            <div class="dossier-badge">4</div>
+            <div class="ms-3">
+                <h5 class="fw-bold mb-3">Drug Interaction Check</h5>
+                <div class="dossier-content">
+                    @if (interactionStatus == "Idle") { <div class="p-4 text-muted small text-center">Pending medication review...</div> }
+                    else if (interactionStatus == "Running") { <div class="p-4 text-center"><div class="spinner-border spinner-border-sm text-primary me-2"></div>Checking contraindications...</div> }
+                    else { <div class="p-0 fade-in"><div class="markdown-content p-4">@((MarkupString)(interactionPayload ?? ""))</div></div> }
+                </div>
+            </div>
+        </div>
+
+        <!-- Safety Guardrail (AI Evaluator) -->
+        <div class="dossier-section @(guardrailStatus != "Idle" ? "active" : "") @(guardrailStatus == "Complete" ? "completed" : "")">
+            <div class="dossier-badge @(guardrailResult?.Status == "BLOCK" ? "bg-danger" : "bg-info") text-white">
+                <i class="bi @(guardrailResult?.Status == "BLOCK" ? "bi-shield-fill-x" : "bi-shield-check")"></i>
+            </div>
+            <div class="ms-3 w-100">
+                <h5 class="fw-bold mb-3">Clinical Safety Guardrail (Azure AI)</h5>
+                <div class="dossier-content @(guardrailResult?.Status == "BLOCK" ? "border-danger bg-danger-subtle pulse-red" : guardrailResult?.Status == "WARN" ? "border-warning bg-warning-subtle" : "")">
+                    @if (guardrailStatus == "Idle") { <div class="p-4 text-muted small text-center italic">Awaiting agent consensus for safety audit...</div> }
+                    else if (guardrailStatus == "Running") { <div class="p-4 text-center"><div class="spinner-border spinner-border-sm text-info me-2"></div>AI Evaluator performing safety audit...</div> }
+                    else {
+                        <div class="p-4 fade-in">
+                            <div class="d-flex align-items-center mb-3">
+                                @if (guardrailResult?.Status == "ALLOW")
+                                {
+                                    <div class="alert alert-success w-100 mb-0 d-flex align-items-center">
+                                        <i class="bi bi-check-circle-fill fs-4 me-3"></i>
+                                        <div>
+                                            <div class="fw-bold">SAFETY CLEARED</div>
+                                            <div class="small">No critical contraindications detected.</div>
+                                        </div>
+                                    </div>
+                                }
+                                else if (guardrailResult?.Status == "BLOCK")
+                                {
+                                    <div class="alert alert-danger w-100 mb-0 d-flex align-items-center">
+                                        <i class="bi bi-exclamation-octagon-fill fs-4 me-3"></i>
+                                        <div>
+                                            <div class="fw-bold">CRITICAL BLOCK</div>
+                                            <div class="small">Safety violation detected. Physician intervention required!</div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning w-100 mb-0 d-flex align-items-center">
+                                        <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
+                                        <div>
+                                            <div class="fw-bold">CLINICAL CAUTION</div>
+                                            <div class="small">Potential risk flagged. Review reasoning below.</div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            @if (guardrailResult != null)
+                            {
+                                <div class="p-3 bg-white rounded shadow-sm border small mt-2">
+                                    <h6 class="fw-bold text-dark mb-2"><i class="bi bi-info-circle me-1"></i> Reasoning:</h6>
+                                    <p class="mb-0 text-secondary" style="line-height: 1.5;">@((MarkupString)(string.IsNullOrEmpty(guardrailResult.Reason) ? "No detailed reasoning provided." : guardrailResult.Reason))</p>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Final Assessment -->
+        <div class="dossier-section @(isComplete ? "active completed" : "")">
+            <div class="dossier-badge">5</div>
+            <div class="ms-3">
+                <h5 class="fw-bold mb-3">Final Consensus Assessment</h5>
+                <div class="dossier-content bg-light">
+                    @if (!isComplete) { <div class="p-4 text-muted small text-center">Aggregating agent insights...</div> }
+                    else {
+                        <div class="p-4 text-center fade-in">
+                            <div class="text-success mb-3"><i class="bi bi-check-circle-fill fs-1"></i></div>
+                            <h6>Orchestration Complete</h6>
+                            <p class="small text-muted mb-3">The final assessment report has been generated and is ready for review.</p>
+                            <a href="/assessment-result/@PatientId" class="btn btn-primary px-4 rounded-pill">View Full Medical Report</a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .italic { font-style: italic; }
+    .fade-in { animation: fadeIn 0.5s ease-in; }
+    .pulse-red { animation: pulseRed 2s infinite; }
+    @@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @@keyframes pulseRed {
+        0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+    }
+</style>
+
+@code {
+    [Parameter] public string PatientId { get; set; } = "";
+    
+    private HubConnection? hubConnection;
+    private List<LogEntry> logs = new();
+    private bool isComplete = false;
+    
+    private string symptomsStatus = "Idle";
+    private string labStatus = "Idle";
+    private string treatmentStatus = "Idle";
+    private string interactionStatus = "Idle";
+    private string guardrailStatus = "Idle";
+
+    private string? symptomsPayload;
+    private string? labPayload;
+    private string? treatmentPayload;
+    private string? interactionPayload;
+    private GuardrailResponse? guardrailResult;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var assessmentId = Guid.NewGuid().ToString();
+        logs.Add(new LogEntry { Message = $"Initializing assessment {assessmentId.Substring(0,8)}...", Timestamp = DateTime.Now });
+        
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl("http://localhost:63066/clinicalhub")
+            .WithAutomaticReconnect()
+            .Build();
+
+        hubConnection.On<AgentProgressEvent>("AgentProgress", async (evt) =>
+        {
+            await InvokeAsync(async () => {
+                var message = string.IsNullOrEmpty(evt.Message) ? $"{evt.AgentName}: {evt.Stage}" : evt.Message;
+                var rendered = "";
+                if (!string.IsNullOrEmpty(evt.Payload))
+                {
+                    rendered = await JS.InvokeAsync<string>("renderMarkdown", evt.Payload);
+                }
+
+                var isClinical = !message.Contains("Connecting") && 
+                                  !message.Contains("Connection established") && 
+                                  !message.Contains("Joining group") && 
+                                  !message.Contains("System ready") && 
+                                  !message.Contains("Initializing assessment");
+
+                var newEntry = new LogEntry { 
+                    Message = message, 
+                    Timestamp = DateTime.Now, 
+                    IsStep = true, 
+                    IsPulse = evt.Stage == AgentStage.Started,
+                    Payload = evt.Payload,
+                    RenderedPayload = rendered,
+                    IsClinical = isClinical
+                };
+
+                logs.Insert(0, newEntry);
+                
+                if (evt.Stage == AgentStage.Started || evt.Stage == AgentStage.Completed)
+                {
+                    UpdateAgentStatus(evt.AgentName, evt.Stage, evt.Payload, rendered);
+                }
+                
+                if (evt.Stage == AgentStage.ConsensusCompleted)
+                {
+                    isComplete = true;
+                    logs.Insert(0, new LogEntry { Message = "Final Assessment Compiled Successfully.", Timestamp = DateTime.Now, IsStep = true, IsClinical = true });
+                }
+
+                StateHasChanged();
+            });
+        });
+
+        try
+        {
+            logs.Insert(0, new LogEntry { Message = "Connecting to orchestrator...", Timestamp = DateTime.Now });
+            StateHasChanged();
+
+            await hubConnection.StartAsync();
+            
+            logs.Insert(0, new LogEntry { Message = "Connection established. Joining group...", Timestamp = DateTime.Now });
+            StateHasChanged();
+
+            await hubConnection.InvokeAsync("JoinAssessmentGroup", PatientId, PersonaService.UserName, PersonaService.CurrentRole.ToString());
+            
+            logs.Insert(0, new LogEntry { Message = "System ready. Triggering clinical agents...", Timestamp = DateTime.Now });
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            logs.Insert(0, new LogEntry { Message = $"Error: {ex.Message}", Timestamp = DateTime.Now, IsError = true });
+            StateHasChanged();
+        }
+    }
+
+    private void UpdateAgentStatus(string agentName, AgentStage stage, string? rawPayload, string? renderedPayload)
+    {
+        string status = stage == AgentStage.Started ? "Running" : "Complete";
+        
+        bool isGuardrail = agentName.Contains("Safety", StringComparison.OrdinalIgnoreCase) || 
+                          agentName.Contains("Guardrail", StringComparison.OrdinalIgnoreCase);
+
+        if (agentName.Contains("Symptoms")) { symptomsStatus = status; if (renderedPayload != null) symptomsPayload = renderedPayload; }
+        else if (agentName.Contains("Lab")) { labStatus = status; if (renderedPayload != null) labPayload = renderedPayload; }
+        else if (agentName.Contains("Treatment")) { treatmentStatus = status; if (renderedPayload != null) treatmentPayload = renderedPayload; }
+        else if (agentName.Contains("Interaction") || agentName.Contains("Drug")) { interactionStatus = status; if (renderedPayload != null) interactionPayload = renderedPayload; }
+        else if (isGuardrail) 
+        { 
+            guardrailStatus = status; 
+            if (rawPayload != null && stage == AgentStage.Completed)
+            {
+                // More robust JSON extraction in case of AI chatter
+                var jsonMatch = System.Text.RegularExpressions.Regex.Match(rawPayload, @"\{.*\}", System.Text.RegularExpressions.RegexOptions.Singleline);
+                var jsonToParse = jsonMatch.Success ? jsonMatch.Value : rawPayload.Trim();
+                
+                try {
+                    guardrailResult = System.Text.Json.JsonSerializer.Deserialize<GuardrailResponse>(jsonToParse, new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                } catch (Exception ex) {
+                    Console.WriteLine($"[UI] Guardrail Parse Error: {ex.Message}");
+                    guardrailResult = new GuardrailResponse { Status = "WARN", Reason = "Error parsing safety details: " + ex.Message };
+                }
+                guardrailStatus = "Complete";
+            } 
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+
+    public class LogEntry
+    {
+        public string Message { get; set; } = "";
+        public DateTime Timestamp { get; set; }
+        public bool IsStep { get; set; }
+        public bool IsPulse { get; set; }
+        public bool IsError { get; set; }
+        public string? Payload { get; set; }
+        public string? RenderedPayload { get; set; }
+        public bool IsExpanded { get; set; }
+        public bool IsClinical { get; set; }
+    }
+}

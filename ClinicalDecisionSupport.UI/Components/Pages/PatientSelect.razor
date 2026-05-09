@@ -1,0 +1,80 @@
+@page "/patient-select"
+@using ClinicalDecisionSupport.UI.Services
+@using ClinicalDecisionSupport.UI.Models
+@attribute [Authorize]
+@inject UserPersonaService PersonaService
+@inject NavigationManager Navigation
+@implements IDisposable
+
+<PageTitle>Patient Selection | Healware</PageTitle>
+
+<div class="fade-in">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="mb-1">Patient Selection</h3>
+            <p class="text-muted">Enter a Patient ID to retrieve clinical records from FHIR.</p>
+        </div>
+        
+        @if (PersonaService.CurrentRole == UserRole.Nurse || PersonaService.CurrentRole == UserRole.Physician)
+        {
+            <a href="/patient-intake" class="btn btn-primary">
+                <i class="bi bi-person-plus-fill me-2"></i> Create New Patient
+            </a>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="medical-card">
+                <div class="medical-card-header">
+                    <h5 class="mb-0">Search Records</h5>
+                </div>
+                <div class="medical-card-body">
+                    <div class="mb-4">
+                        <label class="form-label fw-medium">Enter Patient ID</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                            <input type="text" @bind="patientId" class="form-control border-start-0" placeholder="e.g., cdss-patient-251" @onkeyup="HandleKeyUp" />
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg" @onclick="SearchPatient" disabled="@string.IsNullOrWhiteSpace(patientId)">
+                            Retrieve Records
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private string patientId = string.Empty;
+
+    protected override void OnInitialized()
+    {
+        PersonaService.OnRoleChanged += StateHasChanged;
+    }
+
+    private void SearchPatient()
+    {
+        if (!string.IsNullOrWhiteSpace(patientId))
+        {
+            Navigation.NavigateTo($"/patient-review/{patientId}");
+        }
+    }
+
+    private void HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            SearchPatient();
+        }
+    }
+
+    public void Dispose()
+    {
+        PersonaService.OnRoleChanged -= StateHasChanged;
+    }
+}

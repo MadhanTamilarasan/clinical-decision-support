@@ -1,0 +1,19 @@
+﻿@if (Citations?.Any() == true)
+{
+    <ul>
+        @foreach (var citation in Citations)
+        {
+            <li>
+                <strong>@citation.Source</strong>
+                (@citation.EvidenceType)
+                <br />
+                <em>@citation.Summary</em>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    [Parameter]
+    public List<CitationModel> Citations { get; set; } = new();
+}

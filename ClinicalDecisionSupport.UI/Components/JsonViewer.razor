@@ -1,0 +1,28 @@
+﻿@using System.Text.Json
+
+<div class="json-viewer">
+    <pre>@FormattedJson</pre>
+</div>
+
+@code {
+    [Parameter]
+    public string Json { get; set; } = string.Empty;
+
+    private string FormattedJson => Format(Json);
+
+    private static string Format(string json)
+    {
+        try
+        {
+            var obj = JsonSerializer.Deserialize<object>(json);
+            return JsonSerializer.Serialize(obj, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+        }
+        catch
+        {
+            return json; // fallback if invalid JSON
+        }
+    }
+}

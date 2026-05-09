@@ -1,0 +1,35 @@
+﻿<div class="card mb-3">
+    <div class="card-header">
+        <strong>@AgentName</strong>
+    </div>
+    <div class="card-body">
+        <p>
+            <strong>Confidence:</strong>
+            <span class="badge @GetConfidenceClass()">
+                @Confidence
+            </span>
+        </p>
+        <ul>
+            @foreach (var item in Evidence)
+            {
+                <li>@item</li>
+            }
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string AgentName { get; set; }
+    [Parameter] public string Confidence { get; set; }
+    [Parameter] public List<string> Evidence { get; set; } = new();
+    private string GetConfidenceClass()
+    {
+        return Confidence switch
+        {
+            "High" => "bg-success",
+            "Medium" => "bg-secondary",
+            "Low" => "bg-warning text-dark",
+            _ => "bg-light text-dark"
+        };
+    }
+}

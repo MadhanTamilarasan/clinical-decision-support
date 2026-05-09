@@ -1,0 +1,108 @@
+@page "/"
+@using ClinicalDecisionSupport.UI.Services
+@using ClinicalDecisionSupport.UI.Models
+@attribute [Authorize]
+@inject UserPersonaService PersonaService
+@implements IDisposable
+
+<PageTitle>Dashboard | Healware</PageTitle>
+
+<div class="fade-in">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Welcome back, <span class="text-primary">@PersonaService.CurrentRole</span></h2>
+            <p class="text-muted">Clinical Decision Support System Dashboard</p>
+        </div>
+        <div class="text-end">
+            <div class="small fw-bold text-uppercase text-muted mb-1">Local Time</div>
+            <div class="fs-5 fw-medium">@DateTime.Now.ToString("HH:mm")</div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-lg-8">
+            <div class="medical-card">
+                <div class="medical-card-header">
+                    <h5 class="mb-0">Patient Queue</h5>
+                    <a href="/patient-select" class="btn btn-sm btn-link">Search FHIR</a>
+                </div>
+                <div class="medical-card-body">
+                    <div class="text-center py-5">
+                        <div class="rounded-circle bg-light d-inline-flex p-4 mb-3">
+                            <i class="bi bi-person-search fs-1 text-muted"></i>
+                        </div>
+                        <h5>Search Patient Records</h5>
+                        <p class="text-muted">Retrieve patient data from the FHIR server to start an assessment.</p>
+                        <a href="/patient-select" class="btn btn-primary">
+                            <i class="bi bi-search me-2"></i> Open Patient Search
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="medical-card">
+                <div class="medical-card-header">
+                    <h5 class="mb-0">Clinical Workflow</h5>
+                </div>
+                <div class="medical-card-body">
+                    <div class="d-grid gap-3">
+                        @if (PersonaService.CurrentRole == UserRole.Physician)
+                        {
+                            <a href="/patient-select" class="btn btn-primary text-start p-3 shadow-sm border-0">
+                                <i class="bi bi-lightning-charge-fill me-2"></i> Start New Diagnosis
+                            </a>
+                        }
+                        
+                        @if (PersonaService.CurrentRole == UserRole.Nurse)
+                        {
+                            <a href="/patient-intake" class="btn btn-success text-start p-3 shadow-sm border-0">
+                                <i class="bi bi-plus-circle-fill me-2"></i> New Patient Intake
+                            </a>
+                        }
+
+                        <button class="btn btn-outline-secondary text-start p-3 border-dashed">
+                            <i class="bi bi-journal-medical me-2"></i> Reference Guidelines
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="medical-card bg-light border-0">
+                <div class="medical-card-body">
+                    <h6 class="fw-bold mb-3"><i class="bi bi-info-circle me-2"></i> System Status</h6>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="small text-muted">FHIR Server</span>
+                        <span class="badge bg-success">Connected</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="small text-muted">Orchestrator</span>
+                        <span class="badge bg-success">Online</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="small text-muted">Agents</span>
+                        <span class="badge bg-success">4 Ready</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        PersonaService.OnRoleChanged += HandleRoleChanged;
+    }
+
+    private void HandleRoleChanged()
+    {
+        InvokeAsync(StateHasChanged);
+    }
+
+    public void Dispose()
+    {
+        PersonaService.OnRoleChanged -= HandleRoleChanged;
+    }
+}

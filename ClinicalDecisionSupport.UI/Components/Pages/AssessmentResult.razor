@@ -1,0 +1,280 @@
+@page "/assessment-result/{PatientId}"
+@using ClinicalDecisionSupport.UI.Models
+@using System.Text.Json
+@attribute [Authorize]
+@inject HttpClient Http
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<PageTitle>Clinical Report | Healware</PageTitle>
+
+<div class="container fade-in py-5">
+    @if (loading)
+    {
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary mb-3" role="status"></div>
+            <p class="text-muted">Generating clinical report...</p>
+        </div>
+    }
+    else if (error != null)
+    {
+        <div class="alert alert-danger shadow-sm">
+            <h5 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i> Error Retrieving Report</h5>
+            <p class="mb-0">@error</p>
+            <hr />
+            <button class="btn btn-outline-danger btn-sm" @onclick='() => Navigation.NavigateTo("/patient-search")'>Return to Dashboard</button>
+        </div>
+    }
+    else if (result != null)
+    {
+        <div class="d-flex justify-content-between align-items-center mb-4 no-print">
+            <button class="btn btn-outline-secondary" @onclick='() => Navigation.NavigateTo($"/assessment-run/{PatientId}")'>
+                <i class="bi bi-arrow-left me-2"></i> Back to Live Feed
+            </button>
+            <button class="btn btn-primary shadow" @onclick="DownloadPdf">
+                <i class="bi bi-file-earmark-pdf-fill me-2"></i> Export PDF Report
+            </button>
+        </div>
+
+        <div id="printable-report" class="medical-report p-5 bg-white shadow-lg rounded-4">
+            <!-- Header -->
+            <div class="report-header">
+                <div class="row align-items-center">
+                    <div class="col-md-7">
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="bg-primary text-white p-2 rounded-3 me-3">
+                                <i class="bi bi-shield-plus fs-2"></i>
+                            </div>
+                            <div>
+                                <h1 class="report-title mb-0">Clinical Decision Support Report</h1>
+                                <p class="text-muted small mb-0 fw-bold text-uppercase tracking-wider">Strictly Confidential | Healthcare Professional Use Only</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-md-end">
+                        <div class="text-muted small">Reference ID: <span class="text-dark fw-bold">@result.AssessmentId</span></div>
+                        <div class="text-muted small">Date: <span class="text-dark">@result.Timestamp.ToString("MMMM dd, yyyy")</span></div>
+                        <div class="text-muted small">Time: <span class="text-dark">@result.Timestamp.ToString("HH:mm") UTC</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patient Info -->
+            <div class="row mb-5 g-3">
+                <div class="col-md-4">
+                    <div class="p-3 border rounded-3 bg-light">
+                        <div class="text-muted small text-uppercase fw-bold mb-1">Patient Identifier</div>
+                        <div class="h5 mb-0 fw-bold">@PatientId</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 border rounded-3 bg-light">
+                        <div class="text-muted small text-uppercase fw-bold mb-1">Assessment Status</div>
+                        <div class="badge bg-success bg-opacity-10 text-success px-3">Verification Complete</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 border rounded-3 bg-light">
+                        <div class="text-muted small text-uppercase fw-bold mb-1">Clinical Priority</div>
+                        <div class="badge @(IsCritical() ? "bg-danger" : "bg-info") bg-opacity-10 @(IsCritical() ? "text-danger" : "text-info") px-3">
+                            @(IsCritical() ? "High Risk" : "Routine")
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Executive Summary -->
+            <section class="mb-5">
+                <h4 class="section-title mb-4">Clinical Executive Summary</h4>
+                <div class="p-4 rounded-4 border bg-light shadow-sm">
+                    <div class="markdown-content">
+                        @((MarkupString)renderedFinal)
+                    </div>
+                </div>
+            </section>
+
+            <!-- Safety Guardrail Section (Premium UI) -->
+            @if (guardrailResult != null)
+            {
+                <section class="mb-5">
+                    <h4 class="section-title mb-4">Clinical Safety Audit</h4>
+                    <div class="d-flex align-items-stretch rounded-4 overflow-hidden border @(guardrailResult.Status == "BLOCK" ? "border-danger pulse-red" : guardrailResult.Status == "WARN" ? "border-warning" : "border-success")">
+                        <div class="p-4 @(guardrailResult.Status == "BLOCK" ? "bg-danger" : guardrailResult.Status == "WARN" ? "bg-warning" : "bg-success") d-flex align-items-center">
+                            <i class="bi @(guardrailResult.Status == "BLOCK" ? "bi-shield-fill-x" : "bi-shield-check") fs-1 text-white"></i>
+                        </div>
+                        <div class="p-4 bg-white flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge @(guardrailResult.Status == "BLOCK" ? "bg-danger" : guardrailResult.Status == "WARN" ? "bg-warning text-dark" : "bg-success") px-3 py-2">
+                                    SAFETY STATUS: @guardrailResult.Status
+                                </span>
+                                <span class="text-muted small">Validated by Azure OpenAI Service</span>
+                            </div>
+                            <p class="mb-0 text-dark fw-bold">@guardrailResult.Reason</p>
+                        </div>
+                    </div>
+                </section>
+            }
+
+            <!-- Agent Details -->
+            <section class="mb-5">
+                <h4 class="section-title mb-4">Agent Reasoning & Evidence</h4>
+                <div class="accordion" id="reasoningAccordion">
+                    @foreach (var entry in result.History.Where(h => !string.IsNullOrEmpty(h.Payload) && 
+                                                                  !h.AgentName.Contains("Guardrail", StringComparison.OrdinalIgnoreCase) && 
+                                                                  !h.AgentName.Contains("Safety", StringComparison.OrdinalIgnoreCase) &&
+                                                                  !h.AgentName.Contains("AIGuardrail", StringComparison.OrdinalIgnoreCase) &&
+                                                                  !h.AgentName.Contains("Checker", StringComparison.OrdinalIgnoreCase) &&
+                                                                  !h.AgentName.Contains("Interaction", StringComparison.OrdinalIgnoreCase)))
+                    {
+                        var collapseId = $"collapse_{entry.AgentName.Replace(" ", "")}";
+                        <div class="accordion-item border-0 mb-3 shadow-sm rounded-3 overflow-hidden">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button bg-white fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId">
+                                    <i class="bi bi-check-circle-fill text-success me-2"></i> @entry.AgentName - Analysis
+                                </button>
+                            </h2>
+                            <div id="@collapseId" class="accordion-collapse collapse show" data-bs-parent="#reasoningAccordion">
+                                <div class="accordion-body bg-white pt-0">
+                                    <div class="markdown-content small">
+                                        @((MarkupString)(renderedAgentOutputs.ContainsKey(entry.AgentName) ? renderedAgentOutputs[entry.AgentName] : "No data available."))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Disclaimer -->
+            <footer class="mt-5 pt-4 border-top text-center">
+                <p class="text-muted small fst-italic">
+                    <i class="bi bi-info-circle me-1"></i>
+                    DISCLAIMER: This report was generated by an AI multi-agent system (ClinicalDS). 
+                    It is intended for clinical decision support ONLY and does not constitute a medical diagnosis or prescription. 
+                    All findings must be reviewed and validated by a licensed healthcare professional.
+                </p>
+                <div class="mt-3 opacity-25">
+                    <img src="favicon.png" width="24" alt="ClinicalDS Logo" />
+                </div>
+            </footer>
+        </div>
+    }
+</div>
+
+<style>
+    .section-title {
+        position: relative;
+        padding-bottom: 12px;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        color: #0f172a;
+        font-size: 1.25rem;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    .section-title::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -1px;
+        width: 60px;
+        height: 3px;
+        background: #0369a1;
+    }
+    .medical-report {
+        color: #334155;
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+    
+    .tracking-wider { letter-spacing: 0.05em; }
+
+    .pulse-red { animation: pulseRed 2s infinite; }
+    @@keyframes pulseRed {
+        0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+    }
+</style>
+
+@code {
+    [Parameter] public string PatientId { get; set; } = string.Empty;
+    private bool loading = true;
+    private string? error;
+    private AssessmentRecord? result;
+    private string renderedFinal = "";
+    private Dictionary<string, string> renderedAgentOutputs = new();
+    private GuardrailResponse? guardrailResult;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var response = await Http.GetAsync($"api/clinical-assessment/result/{PatientId}");
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<AssessmentRecord>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                
+                if (result != null)
+                {
+                    renderedFinal = await JS.InvokeAsync<string>("renderMarkdown", result.FinalResult);
+                    foreach (var entry in result.History)
+                    {
+                        if (!string.IsNullOrEmpty(entry.Payload))
+                        {
+                            if (entry.AgentName.Contains("Guardrail", StringComparison.OrdinalIgnoreCase) || 
+                                entry.AgentName.Contains("Safety", StringComparison.OrdinalIgnoreCase) ||
+                                entry.AgentName.Contains("AIGuardrail", StringComparison.OrdinalIgnoreCase))
+                            {
+                                try {
+                                    var jsonMatch = System.Text.RegularExpressions.Regex.Match(entry.Payload, @"\{.*\}", System.Text.RegularExpressions.RegexOptions.Singleline);
+                                    var jsonToParse = jsonMatch.Success ? jsonMatch.Value : entry.Payload.Trim();
+                                    guardrailResult = JsonSerializer.Deserialize<GuardrailResponse>(jsonToParse, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                                } catch { /* Ignore malformed entries */ }
+                            }
+                            else 
+                            {
+                                renderedAgentOutputs[entry.AgentName] = await JS.InvokeAsync<string>("renderMarkdown", entry.Payload);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                error = $"Report not found or assessment in progress. (Status: {response.StatusCode})";
+            }
+        }
+        catch (Exception ex)
+        {
+            error = $"Connection failed: {ex.Message}";
+        }
+        finally
+        {
+            loading = false;
+        }
+    }
+
+    private bool IsCritical()
+    {
+        if (result == null) return false;
+        var text = result.FinalResult.ToLower();
+        return text.Contains("nstemi") || text.Contains("acute") || text.Contains("critical") || 
+               text.Contains("alert") || text.Contains("urgent") || text.Contains("emergency") || 
+               (guardrailResult?.Status == "BLOCK");
+    }
+
+    private async Task DownloadPdf()
+    {
+        await JS.InvokeVoidAsync("downloadPdf", "printable-report", $"ClinicalReport_{PatientId}_{DateTime.Now:yyyyMMdd}.pdf");
+    }
+
+    public class AssessmentRecord
+    {
+        public string AssessmentId { get; set; } = "";
+        public string PatientId { get; set; } = "";
+        public DateTime Timestamp { get; set; }
+        public List<AgentProgressEvent> History { get; set; } = new();
+        public string FinalResult { get; set; } = "";
+    }
+}

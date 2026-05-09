@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <ResourcePreloader />
+    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
+    <link rel="stylesheet" href="@Assets["app.css"]" />
+    <link rel="stylesheet" href="@Assets["ClinicalDecisionSupport.UI.styles.css"]" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <ImportMap />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <HeadOutlet @rendermode="InteractiveServer" />
+</head>
+
+<body>
+    <Routes @rendermode="InteractiveServer" />
+    <ReconnectModal />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        window.renderMarkdown = (text) => {
+            if (!text) return "";
+            let html = marked.parse(text);
+            
+            // Smart Highlighting Logic
+            const highlights = [
+                { reg: /\b(NSTEMI|STEMI|Infarction|Acute|Critical|Urgent|High Risk|Elevated|Abnormal|Positive|Emergency)\b/gi, cls: 'med-highlight-critical' },
+                { reg: /\b(Normal|Stable|Negative|Resolved|Low Risk|Safe|Routine|Baseline)\b/gi, cls: 'med-highlight-safe' },
+                { reg: /\b(Troponin|ECG|Aspirin|Heparin|Metoprolol|Statins|ACE|ARB|Treatment|Diagnosis)\b/gi, cls: 'med-highlight-info' }
+            ];
+
+            highlights.forEach(h => {
+                html = html.replace(h.reg, (match) => `<span class="${h.cls}">${match}</span>`);
+            });
+
+            // Inject class into tables for clinical styling
+            return html.replace(/<table>/g, '<table class="clinical-table">');
+        };
+        window.downloadPdf = (elementId, filename) => {
+            const element = document.getElementById(elementId);
+            const opt = {
+                margin: 1,
+                filename: filename,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        };
+    </script>
+    <script src="@Assets["_framework/blazor.web.js"]"></script>
+</body>
+
+</html>

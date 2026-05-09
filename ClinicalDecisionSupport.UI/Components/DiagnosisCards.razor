@@ -1,0 +1,35 @@
+﻿@using ClinicalDecisionSupport.UI.Models
+
+@if (Diagnoses != null && Diagnoses.Any())
+{
+    <div class="diagnosis-row">
+        @foreach (var diag in Diagnoses)
+        {
+            <div class="diagnosis-box">
+                <h6 class="diagnosis-title">@diag.Diagnosis</h6>
+
+                <div class="confidence-text">
+                    Confidence: @((diag.Confidence * 100).ToString("0"))%
+                </div>
+
+                <div class="confidence-bar">
+                    <div class="confidence-fill"
+                         style="width:@(diag.Confidence * 100)%">
+                    </div>
+                </div>
+
+                <ul class="evidence-list">
+                    @foreach (var ev in diag.Evidence)
+                    {
+                        <li>@ev</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    [Parameter]
+    public List<SymptomDiagnosis>? Diagnoses { get; set; }
+}

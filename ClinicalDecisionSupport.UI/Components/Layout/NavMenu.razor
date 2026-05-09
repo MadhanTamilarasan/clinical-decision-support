@@ -1,0 +1,58 @@
+@using ClinicalDecisionSupport.UI.Services
+@using ClinicalDecisionSupport.UI.Models
+@inject UserPersonaService PersonaService
+@implements IDisposable
+
+<div class="sidebar-header p-4">
+    <div class="d-flex align-items-center mb-4">
+        <div class="logo-box me-2">
+            <i class="bi bi-activity text-white"></i>
+        </div>
+        <span class="fw-bold tracking-tight text-white">HEAL<span class="text-info">WARE</span></span>
+    </div>
+</div>
+
+<nav class="flex-column nav-pills px-3">
+    <div class="nav-item mb-2">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <i class="bi bi-grid-1x2-fill me-3"></i> Dashboard
+        </NavLink>
+    </div>
+
+    <div class="nav-item mb-2">
+        <NavLink class="nav-link" href="patient-select">
+            <i class="bi bi-people-fill me-3"></i> Patients
+        </NavLink>
+    </div>
+
+    @if (PersonaService.CurrentRole == UserRole.Nurse || PersonaService.CurrentRole == UserRole.Physician)
+    {
+        <div class="nav-item mb-2">
+            <NavLink class="nav-link" href="patient-intake">
+                <i class="bi bi-clipboard2-pulse-fill me-3"></i> New Intake
+            </NavLink>
+        </div>
+    }
+
+    @if (PersonaService.CurrentRole == UserRole.Specialist)
+    {
+        <div class="nav-item mb-2">
+            <NavLink class="nav-link" href="referrals">
+                <i class="bi bi-share-fill me-3"></i> My Referrals
+            </NavLink>
+        </div>
+    }
+
+</nav>
+
+@code {
+    protected override void OnInitialized()
+    {
+        PersonaService.OnRoleChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        PersonaService.OnRoleChanged -= StateHasChanged;
+    }
+}

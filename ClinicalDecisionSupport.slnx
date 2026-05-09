@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ClinicalDecisionSupport.UI/ClinicalDecisionSupport.UI.csproj" Id="8f7981e7-94bb-4091-8f98-04e6a1a6aa0b" />
+  <Project Path="ClinicalDecisionSupport/ClinicalDecisionSupport.csproj" />
+</Solution>

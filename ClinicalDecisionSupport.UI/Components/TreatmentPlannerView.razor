@@ -1,0 +1,61 @@
+﻿@using ClinicalDecisionSupport.UI.Models
+
+@if (Plans != null && Plans.Any())
+{
+    @foreach (var plan in Plans)
+    {
+        <div class="treatment-card">
+
+            <h5>@plan.Diagnosis (@($"{plan.Confidence * 100:0}%"))</h5>
+
+            <table class="treatment-table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Rationale</th>
+                        <th>Monitoring</th>
+                        <th>Follow‑up</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var option in plan.TreatmentOptions)
+                    {
+                        <tr>
+                            <td>@option.Option</td>
+                            <td>@option.Rationale</td>
+                            <td>@option.Monitoring</td>
+                            <td>@option.FollowUp</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="treatment-meta">
+                <strong>Guideline:</strong> @plan.GuidelineSource
+            </div>
+
+            @if (plan.Cautions.Any())
+            {
+                <div class="treatment-caution">
+                    <strong>Cautions:</strong>
+                    <ul>
+                        @foreach (var c in plan.Cautions)
+                        {
+                            <li>@c</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <div class="treatment-disclaimer">
+                @plan.Disclaimer
+            </div>
+
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public List<TreatmentPlan>? Plans { get; set; }
+}

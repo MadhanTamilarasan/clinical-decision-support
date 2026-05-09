@@ -1,0 +1,842 @@
+[
+  {
+    "id": "GUIDE-001",
+    "guideline_id": "GUIDE-001",
+    "condition": "Acute ST-Elevation Myocardial Infarction (STEMI)",
+    "related_conditions": [ "COND-001" ],
+    "source_society": "ACC/AHA",
+    "guideline_year": "2022",
+    "evidence_level": "Class I (Level A)",
+    "primary_recommendation": "Primary PCI (percutaneous coronary intervention) is the preferred reperfusion strategy when achievable within 90 minutes of first medical contact (FMC-to-balloon time).",
+    "first_line_treatments": [
+      "Dual antiplatelet therapy: Aspirin 325mg + P2Y12 inhibitor (ticagrelor 180mg preferred or clopidogrel 600mg)",
+      "Anticoagulation: UFH bolus 60 units/kg (max 4000u) + infusion",
+      "Emergent PCI within 90 minutes of FMC",
+      "Beta-blocker within 24 hours if no contraindications",
+      "Statin therapy: high-intensity atorvastatin 80mg"
+    ],
+    "second_line_treatments": [
+      "Fibrinolytic therapy (alteplase) if PCI not available within 120 min of FMC",
+      "Transfer to PCI-capable center after lysis if failed reperfusion"
+    ],
+    "contraindicated_treatments": [
+      "Calcium channel blockers (non-dihydropyridine) in acute STEMI with LV dysfunction",
+      "NSAIDs (increase cardiovascular mortality)"
+    ],
+    "monitoring_parameters": [
+      "Continuous ECG monitoring",
+      "Serial troponin at 0/3/6 hours",
+      "Echocardiogram for LV function assessment",
+      "Daily clinical assessment for heart failure signs"
+    ],
+    "safety_alerts": [
+      "FMC-to-balloon time must be documented; delays worsen outcomes",
+      "Avoid delaying reperfusion for anticoagulation or lab results",
+      "Statin must not be withheld due to concerns about liver toxicity in acute phase"
+    ],
+    "disposition": "CICU (Cardiac ICU)",
+    "content": "The 2022 ACC/AHA STEMI guideline establishes primary percutaneous coronary intervention (PCI) as the gold-standard reperfusion strategy for ST-elevation myocardial infarction, conditional on a first-medical-contact-to-balloon time of 90 minutes or less. Every minute of delay results in additional myocardial necrosis — 'time is muscle' is the foundational principle driving all management decisions. Immediate dual antiplatelet therapy is mandatory: aspirin 325mg chewed plus a P2Y12 inhibitor — ticagrelor 180mg is preferred over clopidogrel 600mg due to its faster onset and superior antiplatelet effect without requiring hepatic activation. Concomitant anticoagulation with weight-based unfractionated heparin (60 units/kg bolus, max 4,000 units) is standard. High-intensity statin therapy with atorvastatin 80mg must be initiated regardless of baseline LDL — the pleiotropic stabilization and mortality benefits are independent of lipid levels and must not be withheld. Beta-blockers should be given within 24 hours in the absence of contraindications (cardiogenic shock, decompensated heart failure, high-degree AV block, severe reactive airway disease). When primary PCI cannot be achieved within 120 minutes of first medical contact, fibrinolytic therapy with alteplase is the fallback reperfusion strategy — absolute contraindications must be rapidly screened including prior intracranial hemorrhage, active major bleeding, recent surgery, and uncontrolled hypertension above 185/110. Post-lysis, transfer to a PCI-capable center for angiography within 3-24 hours is recommended regardless of apparent reperfusion success. Non-dihydropyridine calcium channel blockers (verapamil, diltiazem) are contraindicated in the presence of LV dysfunction due to negative inotropic effects. NSAIDs other than aspirin are contraindicated as they increase cardiovascular mortality and blunt aspirin's antiplatelet efficacy. Continuous ECG telemetry is mandatory for arrhythmia detection, and serial troponins at 0, 3, and 6 hours confirm the kinetics of myocardial injury. All STEMI patients are admitted to the cardiac ICU for hemodynamic monitoring, euglycemia management (glucose 140-180 mg/dL), and initiation of evidence-based secondary prevention including ACE inhibitor/ARB, beta-blocker, and aldosterone antagonist if EF is below 40%."
+  },
+  {
+    "id": "GUIDE-002",
+    "guideline_id": "GUIDE-002",
+    "condition": "Non-ST Elevation ACS (NSTEMI / Unstable Angina)",
+    "related_conditions": [ "COND-002" ],
+    "source_society": "ACC/AHA",
+    "guideline_year": "2021",
+    "evidence_level": "Class I (Level A)",
+    "primary_recommendation": "Risk stratification using GRACE or TIMI score; early invasive strategy (angiography within 24 hours) for high-risk patients (elevated troponin, dynamic ECG changes, GRACE score >140).",
+    "first_line_treatments": [
+      "Aspirin 325mg loading then 81mg daily",
+      "P2Y12 inhibitor (ticagrelor 180mg or clopidogrel 300-600mg)",
+      "Anticoagulation: UFH or enoxaparin 1mg/kg BID",
+      "Beta-blocker if tachycardia or hypertension",
+      "High-intensity statin (atorvastatin 80mg)",
+      "IV nitrates for recurrent ischemia"
+    ],
+    "second_line_treatments": [
+      "Conservative strategy (medical management) for low-risk patients",
+      "GPI (glycoprotein IIb/IIIa inhibitors) for refractory ischemia"
+    ],
+    "contraindicated_treatments": [
+      "Fibrinolysis in NSTEMI (no benefit, increases harm)",
+      "NSAIDs (worsen outcomes)",
+      "Withholding anticoagulation pending angiography in high-risk patients"
+    ],
+    "monitoring_parameters": [
+      "Serial troponin (0/3/6h)",
+      "Continuous ECG",
+      "Daily renal function if on anticoagulation",
+      "GRACE score calculation"
+    ],
+    "safety_alerts": [
+      "Do not use ticagrelor if prior stroke/TIA",
+      "Adjust enoxaparin dose for renal impairment (CrCl <30)",
+      "Check for drug interactions with P2Y12 inhibitors (PPIs — use pantoprazole over omeprazole)"
+    ],
+    "disposition": "CCU or monitored step-down unit",
+    "content": "The 2021 ACC/AHA NSTEMI/Unstable Angina guideline centers on risk-stratified management using validated scoring systems. The GRACE score (incorporating age, heart rate, systolic BP, creatinine, Killip class, cardiac arrest, ST deviation, and troponin) and TIMI score guide the urgency of invasive evaluation. High-risk features mandating early invasive strategy (angiography within 24 hours) include elevated high-sensitivity troponin with a rising pattern, dynamic ST-segment changes or new T-wave inversions, hemodynamic instability, sustained ventricular arrhythmia, prior revascularization, GRACE score above 140, and signs of heart failure. Very high-risk features (refractory ischemia, hemodynamic instability, life-threatening arrhythmia) warrant immediate invasive evaluation within 2 hours. Antiplatelet therapy begins immediately: aspirin 325mg loading dose followed by 81mg daily indefinitely. A P2Y12 inhibitor is added — ticagrelor 180mg is preferred for its rapid onset and superior outcomes versus clopidogrel 600mg, except in patients with prior stroke or TIA where ticagrelor increases intracranial bleeding risk. Anticoagulation with enoxaparin 1mg/kg BID or UFH is standard, with dose reduction for renal impairment (CrCl below 30: enoxaparin 1mg/kg once daily). High-intensity atorvastatin 80mg is initiated immediately — the PROVE IT-TIMI 22 trial established early intensive statin therapy reduces cardiovascular events in ACS. IV nitroglycerin is used for ongoing ischemic chest pain, ST-segment changes, or hypertension, but requires careful BP monitoring. Fibrinolysis is absolutely contraindicated in NSTEMI — thrombus in NSTEMI is typically non-occlusive and platelet-rich, making fibrinolysis ineffective and harmful. A critical drug interaction: omeprazole inhibits CYP2C19 and reduces clopidogrel activation by approximately 40% — pantoprazole is the preferred PPI when gastric protection is needed with clopidogrel. Low-risk patients (GRACE score below 109, no troponin elevation, no ECG changes) may be managed conservatively with stress testing before discharge. All patients receive dual antiplatelet therapy for 12 months post-ACS, with aspirin continued indefinitely."
+  },
+  {
+    "id": "GUIDE-003",
+    "guideline_id": "GUIDE-003",
+    "condition": "Acute Decompensated Heart Failure",
+    "related_conditions": [ "COND-003" ],
+    "source_society": "ACC/AHA/HFSA",
+    "guideline_year": "2022",
+    "evidence_level": "Class I (Level A)",
+    "primary_recommendation": "IV loop diuretic therapy (furosemide) is the cornerstone of treatment for acute decompensated heart failure with volume overload. Target urine output of 3-5 L over first 24 hours.",
+    "first_line_treatments": [
+      "IV furosemide: if not on oral diuretic — 40-80mg IV; if on oral — 2.5x home dose IV",
+      "Oxygen to maintain SpO2 >94%",
+      "Fluid and sodium restriction (<2g Na+/day, <2L fluid/day)",
+      "Continuous monitoring (daily weights, strict I/O)",
+      "Treat precipitating cause (infection, medication non-adherence, ACS, arrhythmia)"
+    ],
+    "second_line_treatments": [
+      "BiPAP/NIV for respiratory failure",
+      "Nesiritide or IV vasodilators (nitroprusside, nitroglycerin) for persistent congestion with high BP",
+      "Ultrafiltration if diuretic-resistant",
+      "Inotropes (dobutamine, milrinone) for cardiogenic shock / low cardiac output"
+    ],
+    "contraindicated_treatments": [
+      "NSAIDs (sodium and fluid retention)",
+      "Thiazolidinediones (worsen fluid retention)",
+      "Metformin during acute decompensation",
+      "Non-dihydropyridine CCBs in HFrEF"
+    ],
+    "monitoring_parameters": [
+      "Daily weight",
+      "Strict I/O (urine output target 3-5L/day initially)",
+      "BMP q8-12h (potassium, creatinine)",
+      "BNP/NT-proBNP at admission and discharge",
+      "ECG daily",
+      "Echocardiogram if first presentation"
+    ],
+    "safety_alerts": [
+      "Excessive diuresis can cause AKI and electrolyte imbalances — replete K+ and Mg2+",
+      "Do not stop GDMT (ACEi/ARB, beta-blocker, spironolactone) unless cardiogenic shock",
+      "Titrate diuresis — avoid over-diuresis"
+    ],
+    "disposition": "Hospital admission; CCU/ICU if hemodynamically unstable",
+    "content": "The 2022 ACC/AHA/HFSA Heart Failure guideline establishes IV loop diuresis as the cornerstone of acute decompensated heart failure (ADHF) management in patients with evidence of volume overload — elevated JVP, peripheral edema, pulmonary rales, orthopnea, and elevated BNP/NT-proBNP. Furosemide is the agent of choice: in diuretic-naive patients, start at 40-80mg IV; in patients already on oral furosemide, give 2.5 times the home oral dose intravenously (higher bioavailability and faster onset than oral in the congested gut). The DOSE trial established that high-dose diuresis (2.5x oral dose) achieves superior decongestion without worsening renal function compared to low-dose strategies. Target urine output is 3-5 liters in the first 24 hours with daily weight loss of 0.5-1.0 kg/day. Critically, guideline-directed medical therapy (GDMT) — ACE inhibitor/ARB, beta-blocker, spironolactone, and SGLT2 inhibitor — must be continued or initiated during the hospitalization unless cardiogenic shock is present; discontinuation worsens 30-day outcomes. Precipitating causes must be identified and treated: the most common are dietary sodium non-adherence, medication non-adherence, ACS, new-onset atrial fibrillation, infection, and uncontrolled hypertension. BiPAP reduces preload and improves oxygenation in respiratory failure — target SpO2 above 94%. For diuretic resistance (inadequate response despite adequate dosing), options include adding a thiazide diuretic for synergistic blockade, switching to continuous furosemide infusion, adding acetazolamide (ADVOR trial), or ultrafiltration. Inotropes (dobutamine, milrinone) are reserved for low-output states with hemodynamic compromise. NSAIDs are strictly contraindicated — they cause sodium retention, antagonize diuretics, and precipitate AKI. BNP-guided therapy targeting BNP decline above 30% during hospitalization is associated with improved outcomes. Pre-discharge BNP below 250 pg/mL predicts lower 30-day readmission. All patients should be discharged on complete GDMT with structured follow-up within 7-14 days."
+  },
+  {
+    "id": "GUIDE-004",
+    "guideline_id": "GUIDE-004",
+    "condition": "Atrial Fibrillation (Acute Rate Control and Anticoagulation)",
+    "related_conditions": [ "COND-004" ],
+    "source_society": "ACC/AHA/HRS",
+    "guideline_year": "2023",
+    "evidence_level": "Class I (Level A)",
+    "primary_recommendation": "Rate control with target HR <110 bpm is acceptable for most AF patients. Anticoagulation decision based on CHA2DS2-VASc score (score ≥2 in men, ≥3 in women: anticoagulate).",
+    "first_line_treatments": [
+      "Rate control: IV metoprolol 2.5-5mg or diltiazem 15-20mg IV (avoid diltiazem in HFrEF)",
+      "Rhythm control: electrical cardioversion if hemodynamically unstable",
+      "Anticoagulation: apixaban 5mg BID or rivaroxaban 20mg daily (preferred over warfarin in non-valvular AF)",
+      "Warfarin (INR 2-3) for mechanical valves or moderate-severe mitral stenosis"
+    ],
+    "second_line_treatments": [
+      "Rhythm control with amiodarone (chemical cardioversion) for persistent AF",
+      "Catheter ablation for symptomatic paroxysmal AF refractory to medications",
+      "Digoxin for rate control if beta-blocker/CCB contraindicated"
+    ],
+    "contraindicated_treatments": [
+      "Digoxin monotherapy for rate control in active patients (inadequate during exercise)",
+      "Aspirin alone as alternative to anticoagulation for stroke prevention (insufficient evidence)",
+      "DOACs in mechanical heart valves"
+    ],
+    "monitoring_parameters": [
+      "Heart rate (target <110 at rest)",
+      "INR if on warfarin (target 2-3)",
+      "Renal function annually (DOAC dose adjustment)",
+      "Thyroid function (AF can be thyroid-mediated)",
+      "Echocardiogram (rule out structural heart disease)"
+    ],
+    "safety_alerts": [
+      "CHA2DS2-VASc score must be calculated for every AF patient",
+      "Bleeding risk assessment (HAS-BLED score) before anticoagulation",
+      "Do not cardiovert AF of unknown duration >48 hours without therapeutic anticoagulation for ≥3 weeks OR TEE to rule out thrombus"
+    ],
+    "disposition": "ED or hospital monitoring if rapid ventricular rate, hemodynamic instability, or new AF",
+    "content": "The 2023 ACC/AHA/HRS Atrial Fibrillation guideline stratifies management into rate control, rhythm control, and stroke prevention. Rate control is appropriate for most patients — a resting heart rate target below 110 bpm is acceptable (RACE II trial showed no benefit of strict rate control below 80 bpm). Acute rate control: IV metoprolol 2.5-5mg over 5 minutes (repeat up to 3 doses) or IV diltiazem 0.25mg/kg bolus are the agents of choice. Diltiazem is contraindicated in HFrEF due to negative inotropy — beta-blockers or digoxin are safer alternatives in this population. Stroke prevention is guided by the CHA2DS2-VASc score (Congestive heart failure, Hypertension, Age ≥75 [2 points], Diabetes, Stroke history [2 points], Vascular disease, Age 65-74, Sex category female): anticoagulation is recommended for score ≥2 in men and ≥3 in women. Non-vitamin K oral anticoagulants (NOACs/DOACs) are strongly preferred over warfarin for non-valvular AF — apixaban demonstrated the best bleeding profile in the ARISTOTLE trial (5mg BID, reduced to 2.5mg BID if ≥2 of: age ≥80, weight ≤60kg, creatinine ≥1.5). Warfarin (INR 2-3) remains mandatory for mechanical heart valves and moderate-to-severe mitral stenosis where DOACs are contraindicated. Before cardioverting AF of greater than 48 hours duration or unknown duration, either transesophageal echocardiography must exclude left atrial appendage thrombus or therapeutic anticoagulation for at least 3 weeks is required — acute cardioversion of unscreened AF risks thromboembolism and stroke. Rhythm control with early cardioversion (EAST-AFNET 4 trial) reduces cardiovascular events when initiated within 1 year of AF diagnosis. Amiodarone is the most effective antiarrhythmic for maintaining sinus rhythm but carries multi-organ toxicity with long-term use. Thyroid function must be checked in new-onset AF as hyperthyroidism is a reversible cause. Annual renal function monitoring guides DOAC dose adjustments."
+  },
+  {
+    "id": "GUIDE-005",
+    "guideline_id": "GUIDE-005",
+    "condition": "Sepsis and Septic Shock (Hour-1 Bundle)",
+    "related_conditions": [ "COND-017" ],
+    "source_society": "Surviving Sepsis Campaign (SSC)",
+    "guideline_year": "2021",
+    "evidence_level": "Strong Recommendation (Level 1B)",
+    "primary_recommendation": "Implement the Hour-1 Bundle for sepsis: measure lactate, obtain blood cultures, administer broad-spectrum antibiotics, and give 30 mL/kg IV crystalloid for hypotension or lactate ≥4 mmol/L.",
+    "first_line_treatments": [
+      "Measure lactate; remeasure if >2 mmol/L",
+      "Blood cultures x2 (before antibiotics, within 45 min of recognition)",
+      "Broad-spectrum antibiotics within 1 hour: vancomycin + piperacillin-tazobactam for most patients",
+      "IV crystalloid 30 mL/kg bolus for MAP <65 or lactate ≥4",
+      "Norepinephrine if MAP <65 despite fluids (target MAP ≥65 mmHg)",
+      "Source control: drain abscess, remove infected catheter/device"
+    ],
+    "second_line_treatments": [
+      "Vasopressin 0.03 units/min added to norepinephrine if MAP not achieved",
+      "Hydrocortisone 200mg/day IV for refractory septic shock (norepinephrine >0.25 mcg/kg/min)",
+      "Albumin replacement in severe septic shock",
+      "Consider stress ulcer prophylaxis (pantoprazole IV)"
+    ],
+    "contraindicated_treatments": [
+      "Delaying antibiotics for culture results (every hour delay increases mortality ~7%)",
+      "Starch-based IV fluids (HES — increased nephrotoxicity)",
+      "Antifungals without evidence of fungal infection in non-immunocompromised"
+    ],
+    "monitoring_parameters": [
+      "Lactate clearance (target >10% clearance at 2 hours; >20% at 6 hours)",
+      "MAP q1h (target ≥65 mmHg)",
+      "Urine output q1h (target >0.5 mL/kg/hr)",
+      "Blood cultures result review at 48-72 hours (de-escalate antibiotics)",
+      "SOFA score q24h",
+      "Daily reassessment for source control"
+    ],
+    "safety_alerts": [
+      "Hour-1 Bundle compliance directly tied to mortality reduction",
+      "Excessive IV fluids increase ARDS and mortality — reassess after initial 30 mL/kg",
+      "Antibiotic de-escalation at 48-72h based on culture results is essential to prevent resistance"
+    ],
+    "disposition": "ICU",
+    "content": "The 2021 Surviving Sepsis Campaign guideline defines sepsis using Sepsis-3 criteria: life-threatening organ dysfunction (SOFA score increase ≥2) caused by a dysregulated host response to infection. Septic shock adds vasopressor requirement to maintain MAP ≥65 mmHg with serum lactate above 2 mmol/L despite adequate fluid resuscitation. The Hour-1 Bundle operationalizes early recognition and treatment into five simultaneous actions that must begin immediately upon recognition. First, measure lactate — values above 4 mmol/L indicate severe hypoperfusion and predict high mortality. Second, obtain at least two sets of blood cultures from different sites before antibiotics, as this guides de-escalation at 48-72 hours without significantly delaying treatment. Third, administer broad-spectrum antibiotics within 1 hour of sepsis recognition — every hour of antibiotic delay increases mortality by approximately 7% (Kumar et al.). Vancomycin plus piperacillin-tazobactam covers gram-positives (including MRSA), gram-negatives (including Pseudomonas), and anaerobes for most community and hospital-acquired sources. Fourth, give 30 mL/kg IV crystalloid bolus for hypotension (MAP below 65) or lactate ≥4 mmol/L — Lactated Ringer's is preferred over normal saline (less hyperchloremic acidosis). Fifth, initiate vasopressors for persistent hypotension: norepinephrine is first-line (superior to dopamine — SOAP II trial), targeting MAP ≥65 mmHg. Vasopressin 0.03 units/min is added as second-line agent. For refractory septic shock requiring norepinephrine above 0.25 mcg/kg/min, hydrocortisone 200mg/day IV reduces vasopressor duration (APROCCHSS trial). Source control within 6-12 hours (abscess drainage, infected device removal, surgical debridement) is as critical as antibiotics. Starch-based colloids (HES) are absolutely contraindicated due to increased AKI and mortality. Antibiotic de-escalation based on 48-72 hour culture results is mandatory for antimicrobial stewardship — continuing broad-spectrum agents unnecessarily drives resistance."
+  },
+  {
+    "id": "GUIDE-006",
+    "guideline_id": "GUIDE-006",
+    "condition": "Community-Acquired Pneumonia",
+    "related_conditions": [ "COND-006" ],
+    "source_society": "IDSA/ATS",
+    "guideline_year": "2019",
+    "evidence_level": "Strong Recommendation (Level I)",
+    "primary_recommendation": "Stratify by PSI (Pneumonia Severity Index) or CURB-65 score to determine site of care. Outpatient: amoxicillin or doxycycline for low-risk. Inpatient: beta-lactam + macrolide. ICU: beta-lactam + azithromycin or respiratory fluoroquinolone.",
+    "first_line_treatments": [
+      "Outpatient (no comorbidities): amoxicillin 1g TID x5 days OR doxycycline 100mg BID x5 days",
+      "Outpatient (comorbidities): amoxicillin-clavulanate + azithromycin OR respiratory fluoroquinolone (levofloxacin/moxifloxacin)",
+      "Inpatient (non-ICU): ceftriaxone 1g IV q24h + azithromycin 500mg IV/PO daily",
+      "ICU: ceftriaxone + azithromycin ± vancomycin or linezolid (if MRSA risk factors)"
+    ],
+    "second_line_treatments": [
+      "Respiratory fluoroquinolone monotherapy for outpatient with comorbidities",
+      "MRSA coverage (vancomycin or linezolid) if ICU with risk factors (prior MRSA, cavitary lesion, influenza post-infection)"
+    ],
+    "contraindicated_treatments": [
+      "Empiric antifungal therapy without evidence of fungal pneumonia",
+      "Blanket MRSA coverage without risk factors"
+    ],
+    "monitoring_parameters": [
+      "Temperature, HR, RR, BP, SpO2 — improvement expected within 48-72 hours",
+      "Repeat CXR if no clinical improvement by 72 hours",
+      "Procalcitonin to guide antibiotic duration (discontinue if <0.25 ng/mL)",
+      "Sputum and blood cultures in severe/ICU cases"
+    ],
+    "safety_alerts": [
+      "Aspiration pneumonia: add anaerobic coverage (metronidazole or amoxicillin-clavulanate)",
+      "Legionella and pneumococcal urinary antigen in severe CAP or ICU patients",
+      "Test for influenza in season — antiviral therapy (oseltamivir) if positive"
+    ],
+    "disposition": "Outpatient (PSI class I-II); inpatient ward (PSI class III-IV); ICU (PSI class V or IDSA/ATS major criteria)",
+    "content": "The 2019 IDSA/ATS Community-Acquired Pneumonia guideline emphasizes site-of-care determination as the foundational management decision. The Pneumonia Severity Index (PSI) uses 20 variables across demographics, comorbidities, physical exam findings, and labs to assign patients to five risk classes: class I-II (low risk, outpatient), class III (intermediate, brief observation or outpatient), class IV-V (high risk, inpatient). CURB-65 (Confusion, Urea >7 mmol/L, Respiratory rate ≥30, BP <90/60, age ≥65) is simpler: score 0-1 outpatient, 2 inpatient, ≥3 consider ICU. For outpatient CAP in otherwise healthy adults without comorbidities, amoxicillin 1g three times daily for 5 days achieves high rates of pneumococcal coverage; doxycycline adds atypical coverage. Patients with significant comorbidities (COPD, diabetes, heart failure, immunosuppression) or recent antibiotic use need expanded coverage with amoxicillin-clavulanate plus azithromycin, or a respiratory fluoroquinolone (levofloxacin 750mg or moxifloxacin 400mg). For non-ICU inpatients, the combination of ceftriaxone 1g IV daily plus azithromycin 500mg provides both pneumococcal and atypical coverage and is associated with lower 30-day mortality than beta-lactam monotherapy. ICU CAP requires ceftriaxone plus azithromycin or, alternatively, a respiratory fluoroquinolone — MRSA and Pseudomonas coverage is added only when specific risk factors are present. Procalcitonin-guided antibiotic duration is recommended: discontinue when PCT falls below 0.25 ng/mL or drops more than 80% from peak. Clinical stability criteria (temperature below 37.8°C, heart rate below 100, respiratory rate below 24, SpO2 above 90%, tolerating oral medications) guide step-down from IV to oral antibiotics and discharge planning. Legionella and pneumococcal urinary antigens should be obtained in ICU-admitted patients. Influenza testing and empiric oseltamivir during influenza season are recommended before final culture results, as post-influenza bacterial pneumonia (typically S. aureus) carries high mortality. Aspiration pneumonia requires expanded anaerobic coverage."
+  },
+  {
+    "id": "GUIDE-007",
+    "guideline_id": "GUIDE-007",
+    "condition": "Type 2 Diabetes Mellitus Management",
+    "related_conditions": [ "COND-010" ],
+    "source_society": "ADA (American Diabetes Association)",
+    "guideline_year": "2024",
+    "evidence_level": "Grade A",
+    "primary_recommendation": "Metformin remains first-line for most patients with T2DM. Add SGLT2 inhibitor or GLP-1 RA if ASCVD, heart failure, or CKD regardless of HbA1c. Target HbA1c <7% for most adults.",
+    "first_line_treatments": [
+      "Metformin 500mg BID titrating to 2000mg/day (if eGFR ≥30)",
+      "Lifestyle intervention: medical nutrition therapy, 150 min/week moderate exercise",
+      "SGLT2 inhibitor (dapagliflozin/empagliflozin) if ASCVD, HF, or CKD — add regardless of HbA1c",
+      "GLP-1 RA (semaglutide, liraglutide) if ASCVD or obesity (BMI ≥30)",
+      "Statin therapy for all T2DM patients age 40-75 (moderate to high intensity)"
+    ],
+    "second_line_treatments": [
+      "DPP-4 inhibitor (sitagliptin) — weight neutral, low hypoglycemia risk",
+      "Sulfonylurea (glipizide) — low cost, risk of hypoglycemia",
+      "Insulin (basal: glargine/detemir) if HbA1c >10% or severe hyperglycemia"
+    ],
+    "contraindicated_treatments": [
+      "Metformin if eGFR <30",
+      "SGLT2 inhibitor if eGFR <20 (for glucose lowering)",
+      "GLP-1 RA if personal/family history of MTC or MEN2",
+      "Pioglitazone in CHF (fluid retention)"
+    ],
+    "monitoring_parameters": [
+      "HbA1c every 3 months until stable, then every 6 months",
+      "eGFR annually",
+      "Urine albumin-creatinine ratio annually",
+      "Lipid panel annually",
+      "Foot exam annually",
+      "Dilated retinal exam annually or every 2 years if low risk",
+      "BP at every visit (target <130/80)"
+    ],
+    "safety_alerts": [
+      "SGLT2 inhibitors: hold 3-4 days before surgery or prolonged fasting (DKA risk)",
+      "GLP-1 RA: nausea common — start low and titrate slowly",
+      "Sulfonylureas: high hypoglycemia risk in elderly or CKD — avoid or reduce dose",
+      "Annual B12 level check in patients on metformin >4 years"
+    ],
+    "disposition": "Outpatient with structured follow-up every 3 months",
+    "content": "The ADA 2024 Standards of Diabetes Care updates the treatment algorithm to center cardiorenal protection alongside glycemic control. HbA1c below 7% remains the standard target for most non-pregnant adults; less stringent targets of 7.5-8% are appropriate for patients with hypoglycemia unawareness, limited life expectancy, significant comorbidities, or long-standing poorly controlled T2DM. Metformin remains the preferred initial agent when tolerated — it is weight neutral, does not cause hypoglycemia, reduces cardiovascular events (UKPDS), and is low cost. However, the major paradigm shift is that SGLT2 inhibitors and GLP-1 receptor agonists are now recommended based on cardiorenal indications independent of HbA1c: SGLT2 inhibitors (dapagliflozin, empagliflozin, canagliflozin) are preferred for patients with established ASCVD, heart failure (DAPA-HF trial — reduced mortality in HFrEF regardless of diabetes status), or CKD with albuminuria; GLP-1 receptor agonists (semaglutide, liraglutide) are preferred for patients with established ASCVD or who need significant weight reduction. Injectable semaglutide (Ozempic) reduced MACE by 26% in SUSTAIN-6; oral semaglutide provides similar cardiovascular benefits. The four-pillar combination for T2DM with HFrEF is: metformin + SGLT2 inhibitor + GLP-1 RA + statin. Sulfonylureas are now third-line due to hypoglycemia risk, particularly dangerous in elderly and CKD patients. All patients aged 40-75 with diabetes receive statin therapy regardless of baseline LDL. Comprehensive annual microvascular complication screening is mandatory: HbA1c, urine albumin-creatinine ratio, eGFR, dilated eye exam, and foot exam. SGLT2 inhibitors must be held 3-4 days before major surgery due to euglycemic DKA risk during fasting states. Patients on metformin for more than 4 years require B12 monitoring due to malabsorption risk."
+  },
+  {
+    "id": "GUIDE-008",
+    "guideline_id": "GUIDE-008",
+    "condition": "Diabetic Ketoacidosis (DKA) Management",
+    "related_conditions": [ "COND-011" ],
+    "source_society": "ADA / Endocrine Society",
+    "guideline_year": "2022",
+    "evidence_level": "Grade A",
+    "primary_recommendation": "Aggressive IV fluid resuscitation is the first and most critical step in DKA. Normal saline 1-1.5 L/hr in first 1-2 hours. Fixed-rate insulin infusion at 0.1 units/kg/hr after potassium confirmed >3.5 mEq/L.",
+    "first_line_treatments": [
+      "IV NS 1-1.5 L/hr for first 1-2 hours, then transition to 0.45% NS at 250-500 mL/hr",
+      "Insulin infusion: 0.1 units/kg/hr (do NOT give bolus in children; optional in adults)",
+      "Potassium replacement: K+ 3.5-5.0: replace 20-40 mEq/hr; K+ <3.5: hold insulin and replace aggressively",
+      "Add dextrose (D5% or D10%) to fluids when glucose <200-250 mg/dL",
+      "Identify and treat precipitant (infection, non-adherence, new diagnosis)"
+    ],
+    "second_line_treatments": [
+      "Bicarbonate ONLY if pH <6.9 (50-100 mEq NaHCO3 in 200 mL water over 2 hours)",
+      "Phosphate replacement if <1.0 mg/dL",
+      "Transition to subcutaneous insulin when: glucose <200, anion gap closed, pH >7.3, bicarbonate >18, patient eating"
+    ],
+    "contraindicated_treatments": [
+      "Starting insulin before potassium replacement if K+ <3.5 (fatal hypokalemia risk)",
+      "Stopping insulin infusion when glucose normalizes without replacing with dextrose",
+      "Bicarbonate use when pH >7.0 (increases CNS acidosis, cerebral edema risk in children)"
+    ],
+    "monitoring_parameters": [
+      "Glucose q1h",
+      "BMP (K+, Na+, Cr, bicarbonate, anion gap) q2h initially",
+      "ABG/VBG q2-4h until pH >7.3",
+      "Urine/serum ketones q4h",
+      "Fluid balance q1h",
+      "Clinical status q1h"
+    ],
+    "safety_alerts": [
+      "Cerebral edema in pediatric DKA — avoid exceeding 10 mL/kg/hr fluid rate in children",
+      "Anion gap closure is the treatment endpoint — not glucose normalization",
+      "Do NOT discharge until patient tolerating oral fluids, AG closed, and SQ insulin established"
+    ],
+    "disposition": "ICU if pH <7.0, altered mental status, or hemodynamic instability; stepdown if mild",
+    "content": "The ADA/Endocrine Society DKA management protocol is organized around five simultaneous priorities: fluid resuscitation, insulin therapy, electrolyte replacement, identifying the precipitant, and monitoring for complications. DKA is diagnosed by the triad of hyperglycemia (glucose >250 mg/dL, though euglycemic DKA with lower glucose occurs with SGLT2 inhibitors or pregnancy), anion gap metabolic acidosis (AG >12 with pH <7.3 or bicarbonate <18), and ketonemia or ketonuria. Fluid resuscitation is the single most important initial intervention — 1-1.5 L/hr normal saline in the first hour rapidly expands intravascular volume, improves renal perfusion, and promotes glucosuria. Subsequent fluid choice is transitioned to 0.45% NS at 250-500 mL/hr, guided by hemodynamics, serum sodium trend (pseudohyponatremia corrects as glucose falls — add 1.6 mEq/L Na per 100 mg/dL glucose drop), and urine output. Insulin must never be started until serum potassium is confirmed above 3.5 mEq/L — insulin drives potassium intracellularly, potentially causing fatal cardiac arrhythmias in a hypokalemic patient. Once potassium is adequate, regular insulin infusion at 0.1 units/kg/hr is initiated. When glucose falls to 200-250 mg/dL, dextrose is added to IV fluids to allow continued insulin infusion until the anion gap closes — premature insulin discontinuation allows ketoacidosis to persist despite normal glucose. The treatment endpoint is anion gap closure and bicarbonate normalization, not simply glucose normalization. Bicarbonate is given only for severe acidosis with pH below 6.9 due to hemodynamic compromise — at higher pH values, bicarbonate paradoxically worsens CNS acidosis, slows ketone clearance, and in children increases cerebral edema risk. Transition to subcutaneous insulin requires oral intake tolerance plus overlap of 1-2 hours between the last insulin dose and stopping the infusion to prevent rebound ketosis. The most common precipitants are infection (obtain cultures, blood glucose, urinalysis), insulin omission, and new-onset T1DM — these must be simultaneously addressed."
+  },
+  {
+    "id": "GUIDE-009",
+    "guideline_id": "GUIDE-009",
+    "condition": "Pulmonary Embolism (PE) Diagnosis and Treatment",
+    "related_conditions": [ "COND-009" ],
+    "source_society": "ESC / AHA",
+    "guideline_year": "2023",
+    "evidence_level": "Class I (Level A)",
+    "primary_recommendation": "Diagnose using Wells or Geneva score + D-dimer (if low probability) or CTPA (if high probability or elevated D-dimer). Anticoagulation is the cornerstone of treatment for confirmed PE.",
+    "first_line_treatments": [
+      "Hemodynamically stable PE: DOACs preferred (rivaroxaban 15mg BID x21d then 20mg daily, OR apixaban 10mg BID x7d then 5mg BID)",
+      "LMWH (enoxaparin 1mg/kg BID) if DOAC not suitable; bridge to warfarin if needed",
+      "Hemodynamically unstable (massive PE): systemic thrombolysis (alteplase 100mg over 2 hours) + UFH",
+      "Catheter-directed thrombolysis for submassive PE with RV dysfunction if lysis risk acceptable"
+    ],
+    "second_line_treatments": [
+      "Anticoagulation duration: 3 months (provoked PE); extended if unprovoked, cancer-associated, or recurrent",
+      "IVC filter only if anticoagulation absolutely contraindicated",
+      "Low-dose DOACs (rivaroxaban 10mg daily or apixaban 2.5mg BID) for extended prophylaxis after 6 months"
+    ],
+    "contraindicated_treatments": [
+      "Systemic thrombolysis in stable PE (bleeding risk outweighs benefit)",
+      "LMWH in severe renal impairment CrCl <30 (accumulation)",
+      "Direct thrombin inhibitors as first-line in AF + PE"
+    ],
+    "monitoring_parameters": [
+      "Hemodynamic status q1-2h in first 24 hours",
+      "Echocardiogram for RV function (RV:LV ratio, TAPSE)",
+      "Troponin and BNP for risk stratification",
+      "aPTT if on UFH (target 60-100 sec)",
+      "Renal function if on LMWH or DOACs"
+    ],
+    "safety_alerts": [
+      "Always use PESI or sPESI score for prognostication",
+      "Submassive PE with RV dysfunction requires close monitoring (may deteriorate)",
+      "Anticoagulate before imaging if clinical probability is high and low bleeding risk",
+      "Extended anticoagulation indefinitely if unprovoked PE — assess bleeding risk annually"
+    ],
+    "disposition": "ICU for massive PE; monitored floor for submassive; outpatient eligible if sPESI = 0",
+    "content": "The 2023 ESC/AHA PE guideline integrates clinical probability assessment, biomarker risk stratification, and imaging into a structured diagnostic and therapeutic pathway. Pretest probability is assessed with the Wells PE score (score ≤4 = low/intermediate; >4 = high) or Geneva score. For low-to-intermediate probability, a negative D-dimer (age-adjusted: age × 10 ng/mL for age above 50) effectively excludes PE without imaging. For high probability or elevated D-dimer, CT pulmonary angiography (CTPA) is the definitive diagnostic study. PE risk stratification guides treatment intensity: massive (high-risk) PE — defined by hemodynamic instability (systolic BP below 90 or >40 mmHg sustained drop, cardiac arrest, vasopressor requirement) — requires immediate systemic thrombolysis with alteplase 100mg over 2 hours plus UFH. Surgical embolectomy or catheter-based thrombectomy are salvage options for thrombolysis contraindications or failure. Submassive (intermediate-risk) PE — hemodynamically stable but with right ventricular dysfunction (RV:LV ratio above 0.9 on CT or echo, BNP elevation, troponin elevation) — is treated with anticoagulation and monitored for deterioration; catheter-directed thrombolysis delivers lower-dose alteplase directly into the thrombus, reducing RV strain with lower systemic bleeding risk (SEATTLE II trial). Low-risk PE — hemodynamically stable, RV function normal, troponin negative, sPESI score zero — is treated with DOAC anticoagulation and may be managed as outpatient. Apixaban (10mg BID × 7 days then 5mg BID) or rivaroxaban (15mg BID × 21 days then 20mg daily) are first-line DOACs — both eliminate the need for initial parenteral anticoagulation. Anticoagulation duration: 3 months for provoked PE (identifiable reversible trigger); indefinitely for unprovoked PE, cancer-associated PE (LMWH or DOAC preferred in cancer), and recurrent PE, with annual bleeding risk reassessment. IVC filters are reserved for absolute anticoagulation contraindications and are not a substitute for anticoagulation."
+  },
+  {
+    "id": "GUIDE-010",
+    "guideline_id": "GUIDE-010",
+    "condition": "Acute Ischemic Stroke (AIS) Management",
+    "related_conditions": [ "COND-029" ],
+    "source_society": "AHA/ASA",
+    "guideline_year": "2023",
+    "evidence_level": "Class I (Level A)",
+    "primary_recommendation": "IV alteplase within 4.5 hours of symptom onset in eligible patients. Mechanical thrombectomy for large vessel occlusion with favorable imaging within 24 hours. Time is brain — initiate reperfusion as rapidly as possible.",
+    "first_line_treatments": [
+      "IV alteplase 0.9 mg/kg (max 90mg): 10% as bolus over 1 min, remainder over 60 min",
+      "Mechanical thrombectomy for LVO (ICA, M1-MCA, basilar) within 24 hours with favorable imaging (ASPECTS ≥6)",
+      "Admit to stroke unit (improves outcomes vs general ward)",
+      "Permissive hypertension: do not treat BP unless >220/120 (or >185/110 if planning thrombolysis)",
+      "Aspirin 325mg within 24-48 hours of stroke onset (not within 24 hours of alteplase)"
+    ],
+    "second_line_treatments": [
+      "Anticoagulation for AF-related stroke: start 2-14 days after stroke",
+      "Statin therapy (atorvastatin 80mg) for atherosclerotic etiology",
+      "BP lowering for secondary prevention: target <130/80",
+      "Clopidogrel + aspirin for 21 days if minor stroke or TIA (POINT/CHANCE trial)",
+      "PFO closure consideration if cryptogenic stroke in patient <60 years"
+    ],
+    "contraindicated_treatments": [
+      "Alteplase if: active bleeding, recent surgery <14 days, prior ICH, BP >185/110 uncontrolled, platelets <100k, INR >1.7",
+      "Heparin anticoagulation acutely in large AIS (hemorrhagic transformation risk)",
+      "Aggressive BP lowering in acute stroke (reduces perfusion to penumbra)"
+    ],
+    "monitoring_parameters": [
+      "Neurological assessment (NIHSS) q4-6h for 24 hours post-thrombolysis",
+      "BP q15 min during and 2 hours post-alteplase",
+      "MRI/CT at 24 hours post-thrombolysis to assess for hemorrhage",
+      "Telemetry for 72 hours (detect AF)",
+      "Swallowing assessment before oral intake",
+      "Glucose monitoring (maintain 140-180 mg/dL)"
+    ],
+    "safety_alerts": [
+      "Door-to-CT target: 25 minutes; door-to-needle target: 60 minutes",
+      "Post-thrombolysis BP must be maintained <180/105 for 24 hours",
+      "No aspirin/anticoagulants for 24 hours after alteplase",
+      "Avoid Foley catheter and NGT in first 24 hours post-thrombolysis (bleeding risk)"
+    ],
+    "disposition": "Stroke unit (all AIS); ICU if large territory infarct, basilar artery occlusion, or post-thrombectomy",
+    "content": "The 2023 AHA/ASA Acute Ischemic Stroke guideline emphasizes time-critical reperfusion as the primary determinant of neurological outcome — every 15-minute reduction in door-to-needle time saves an average of 4 days of disability-free life. The acute evaluation must proceed on a parallel track: immediate non-contrast CT head (door-to-CT within 25 minutes) to exclude hemorrhagic stroke, glucose measurement, and NIHSS scoring simultaneously with history and brief examination to identify contraindications to alteplase. IV alteplase 0.9 mg/kg (maximum 90mg) is administered within 4.5 hours of last-known-well time in eligible patients — door-to-needle target is 60 minutes. Contraindications include prior intracranial hemorrhage, active internal bleeding, recent major surgery within 14 days, BP persistently above 185/110 despite antihypertensive treatment, platelets below 100,000, INR above 1.7, and glucose below 50 or above 400 mg/dL. For large vessel occlusion (internal carotid artery, proximal M1-MCA segment, basilar artery), mechanical thrombectomy with stent retrievers achieves recanalization in 70-80% and significantly improves outcomes versus alteplase alone — the treatment window extends to 24 hours with favorable penumbral imaging (DAWN and DEFUSE 3 trials). During the acute phase, aggressive blood pressure lowering is harmful — in patients not receiving thrombolysis, BP is permitted up to 220/120 mmHg; in post-alteplase patients, BP must be maintained below 180/105 mmHg for 24 hours with labetalol or nicardipine. Permissive hypertension maintains perfusion to the ischemic penumbra where autoregulation is impaired. No aspirin or anticoagulants for 24 hours post-alteplase. Continuous cardiac telemetry for 72 hours detects paroxysmal AF (the etiology in 15-20% of cryptogenic strokes). Swallowing assessment before any oral intake prevents aspiration pneumonia. Euglycemia (140-180 mg/dL) improves penumbral salvage. Secondary prevention begins within 24-48 hours: aspirin 325mg, early high-intensity statin, and antihypertensive therapy targeting below 130/80 mmHg."
+  },
+  {
+    "id": "GUIDE-011",
+    "guideline_id": "GUIDE-011",
+    "condition": "Acute Kidney Injury (AKI) Prevention and Management",
+    "related_conditions": [ "COND-014" ],
+    "source_society": "KDIGO",
+    "guideline_year": "2022",
+    "evidence_level": "Grade 1B",
+    "primary_recommendation": "Identify and treat AKI cause early. Volume resuscitation for prerenal; remove obstructions for postrenal; stop nephrotoxins. Use KDIGO staging (1/2/3) to guide management intensity.",
+    "first_line_treatments": [
+      "Identify AKI etiology: prerenal (BUN:Cr >20, FeNa <1%), intrinsic (muddy brown casts, FeNa >2%), postrenal (bladder scan, renal US)",
+      "Aggressive volume resuscitation for prerenal AKI: LR or NS 500-1000 mL bolus",
+      "Discontinue all nephrotoxic agents (NSAIDs, aminoglycosides, contrast dye, ACEi/ARBs if pre-renal)",
+      "Treat obstruction: Foley catheter for bladder outlet obstruction; urology/IR for upper tract obstruction",
+      "Dose-adjust all renally-cleared medications",
+      "Optimize hemodynamics (MAP >65 mmHg in septic AKI)"
+    ],
+    "second_line_treatments": [
+      "Renal replacement therapy (hemodialysis) for: refractory hyperkalemia K+ >6.5, pH <7.1, BUN >100, uremic symptoms, refractory volume overload",
+      "Loop diuretic challenge (furosemide stress test) to assess tubular function and guide prognosis"
+    ],
+    "contraindicated_treatments": [
+      "NSAIDs — worsen AKI via prostaglandin-mediated afferent arteriole constriction",
+      "Iodinated contrast without pre-hydration in high-risk patients",
+      "ACE inhibitors/ARBs during established AKI (efferent arteriole dilation worsens GFR)",
+      "Starch-based resuscitation fluids (HES — increased AKI and mortality)"
+    ],
+    "monitoring_parameters": [
+      "Hourly urine output (target >0.5 mL/kg/hr)",
+      "BMP q6-8h (K+, Cr, BUN, bicarbonate)",
+      "Daily weight and fluid balance",
+      "Bladder scan if urine output <0.5 mL/kg/hr",
+      "Nephrology consult for AKI stage 2-3, unknown etiology, or rapidly progressive course"
+    ],
+    "safety_alerts": [
+      "AKI increases in-hospital mortality 2-6 fold — treat urgently and identify cause",
+      "Contrast nephropathy prevention: pre-hydrate with NS or NaHCO3 at 1 mL/kg/hr x6-12 hours before procedure",
+      "IV contrast should be avoided in AKI unless benefit clearly outweighs risk"
+    ],
+    "disposition": "ICU for AKI stage 3 or requiring dialysis; stepdown for stage 1-2",
+    "content": "The 2022 KDIGO AKI guideline defines acute kidney injury by any of three criteria: serum creatinine rise ≥0.3 mg/dL within 48 hours, creatinine rise ≥1.5 times baseline within 7 days, or urine output below 0.5 mL/kg/hr for more than 6 hours. AKI is staged 1 through 3 (stage 3 includes creatinine above 4.0 mg/dL, rise ≥3x baseline, initiation of renal replacement therapy, or eGFR below 35 in patients under 18). The first priority is etiology classification using the prerenal/intrinsic/postrenal framework, as treatment differs fundamentally. Prerenal AKI (decreased renal perfusion) is diagnosed by BUN:creatinine ratio above 20:1 and fractional excretion of sodium below 1% — treatment is IV fluid resuscitation with lactated Ringer's or normal saline. Intrinsic AKI most commonly presents as acute tubular necrosis (ATN) from prolonged ischemia, nephrotoxins (aminoglycosides, contrast dye, myoglobin, NSAIDs), or glomerulonephritis — muddy brown granular casts on urinalysis are pathognomonic for ATN, and FENa above 2% confirms tubular dysfunction. Postrenal AKI from obstruction is excluded urgently with bladder scan (post-void residual above 300 mL suggests outlet obstruction) and renal ultrasound (hydronephrosis indicates upper tract obstruction). All nephrotoxic medications must be stopped immediately — NSAIDs impair prostaglandin-mediated afferent arteriole dilation, ACE inhibitors and ARBs dilate the efferent arteriole reducing GFR when renal perfusion is already compromised (the triple whammy with diuretics). All renally-cleared medications must have doses adjusted based on the current estimated GFR. Contrast-associated AKI prevention: pre-hydration with 1 mL/kg/hr isotonic saline or sodium bicarbonate 6-12 hours before contrast procedure in high-risk patients (CKD eGFR below 45, diabetes, dehydration). Indications for emergent renal replacement therapy include refractory hyperkalemia above 6.5 mEq/L with ECG changes, severe metabolic acidosis (pH below 7.1) unresponsive to medical management, BUN above 100 with uremic symptoms (encephalopathy, pericarditis, platelet dysfunction), and refractory volume overload causing respiratory failure."
+  },
+  {
+    "id": "GUIDE-012",
+    "guideline_id": "GUIDE-012",
+    "condition": "Bacterial Meningitis Management",
+    "related_conditions": [ "COND-032" ],
+    "source_society": "IDSA",
+    "guideline_year": "2022",
+    "evidence_level": "Strong Recommendation (Level I)",
+    "primary_recommendation": "Administer empiric antibiotics IMMEDIATELY — within 30 minutes of presentation. Dexamethasone before or with first antibiotic dose reduces mortality and neurological sequelae in pneumococcal meningitis.",
+    "first_line_treatments": [
+      "Ceftriaxone 2g IV q12h (covers Streptococcus pneumoniae and Neisseria meningitidis)",
+      "Vancomycin 15-20mg/kg IV q8-12h (covers drug-resistant S. pneumoniae)",
+      "Ampicillin 2g IV q4h if age >50 or immunocompromised (covers Listeria monocytogenes)",
+      "Dexamethasone 0.15 mg/kg IV q6h x4 days — start before or with first antibiotic dose",
+      "CT head before LP only if: papilledema, focal deficits, altered consciousness, immunocompromised, or new seizure (do not delay antibiotics for CT)"
+    ],
+    "second_line_treatments": [
+      "Acyclovir 10mg/kg IV q8h if herpes encephalitis cannot be excluded pending CSF",
+      "Meropenem for beta-lactam allergic patients",
+      "Rifampin 600mg daily added for penicillin-resistant S. pneumoniae"
+    ],
+    "contraindicated_treatments": [
+      "Delaying antibiotics to wait for LP results — antibiotics first, LP within 2 hours if possible",
+      "Dexamethasone started after antibiotics are already initiated (benefit is minimal)",
+      "Routine LP without CT in patients with focal deficits or papilledema (herniation risk)"
+    ],
+    "monitoring_parameters": [
+      "Frequent neurological assessment (GCS, pupil response)",
+      "Vital signs q1h",
+      "CSF analysis (WBC, glucose, protein, gram stain, culture, sensitivity)",
+      "Brain imaging if clinical deterioration",
+      "Serum glucose simultaneously with CSF glucose (CSF:serum ratio <0.6 suggests bacterial meningitis)",
+      "Complication screening: SIADH (serum Na+), hearing loss, seizures"
+    ],
+    "safety_alerts": [
+      "Droplet precautions for N. meningitidis for first 24 hours of antibiotics",
+      "Chemoprophylaxis for close contacts: rifampin 600mg BID x2 days or ciprofloxacin 500mg single dose or ceftriaxone 250mg IM",
+      "SIADH common in bacterial meningitis — monitor sodium and restrict fluids but avoid hypovolemia"
+    ],
+    "disposition": "ICU",
+    "content": "The 2022 IDSA bacterial meningitis guideline identifies time to antibiotics as the single most modifiable determinant of survival and neurological outcome. Antibiotics must be administered within 30 minutes of clinical suspicion — any delay for lumbar puncture, CT head, or other diagnostic workup is unacceptable unless the delay is unavoidable due to specific safety concerns (elevated ICP risk). The empiric antibiotic regimen must cover the most likely pathogens based on age and immune status. For immunocompetent adults aged 18-50, ceftriaxone 2g IV every 12 hours plus vancomycin (targeting trough 15-20 mcg/mL or AUC/MIC 400-600) covers drug-resistant Streptococcus pneumoniae (the most common cause of community-acquired adult bacterial meningitis) and Neisseria meningitidis. For patients above age 50, immunocompromised hosts, alcoholics, or pregnant women, ampicillin 2g IV every 4 hours is added for Listeria monocytogenes coverage — cephalosporins have no activity against Listeria. Dexamethasone 0.15 mg/kg IV every 6 hours for 4 days must be given before or simultaneously with the first antibiotic dose — a landmark trial (de Gans, NEJM 2002) showed it reduces mortality from 15% to 7% and neurological deficits in pneumococcal meningitis by suppressing the harmful inflammatory cascade triggered by bacterial lysis. Dexamethasone given after antibiotics provides minimal benefit. CT head before lumbar puncture is required only when: papilledema, focal neurological deficits, altered consciousness, known CNS lesion, or seizure in the prior week — these features suggest elevated ICP where LP risks brain herniation. CSF analysis: bacterial meningitis classically shows WBC above 1000 (predominantly PMNs), very low glucose (CSF:serum ratio below 0.4), very high protein (above 200 mg/dL), and positive Gram stain in 60-80%. Meningococcal disease requires droplet isolation for 24 hours, with urgent chemoprophylaxis of all household and close contacts using rifampin, ciprofloxacin, or ceftriaxone."
+  },
+  {
+    "id": "GUIDE-013",
+    "guideline_id": "GUIDE-013",
+    "condition": "Rheumatoid Arthritis Management",
+    "related_conditions": [ "COND-033" ],
+    "source_society": "ACR (American College of Rheumatology)",
+    "guideline_year": "2021",
+    "evidence_level": "Conditional/Strong Recommendation (varies by intervention)",
+    "primary_recommendation": "Treat-to-target (T2T) strategy: initiate DMARD therapy early within 3 months of diagnosis; target DAS28 remission or low disease activity. Methotrexate is the preferred initial DMARD.",
+    "first_line_treatments": [
+      "Methotrexate (MTX) 15-25mg/week PO or SC + folic acid 1mg daily (mandatory co-prescription)",
+      "Short-term bridging corticosteroid (prednisone ≤10mg/day, taper within 3 months)",
+      "NSAIDs for symptomatic relief (short-term only)"
+    ],
+    "second_line_treatments": [
+      "If inadequate MTX response at 3 months: add anti-TNF (adalimumab, etanercept) or JAK inhibitor (tofacitinib, baricitinib) or IL-6 inhibitor (tocilizumab)",
+      "Triple DMARD therapy (MTX + hydroxychloroquine + sulfasalazine) as biologic-equivalent alternative",
+      "Abatacept (CTLA4-Ig) for patients with risk factors for TNF-related adverse effects"
+    ],
+    "contraindicated_treatments": [
+      "Long-term high-dose glucocorticoids as monotherapy (bone loss, infection, metabolic risk)",
+      "TNF inhibitors in active serious infection, untreated latent TB, demyelinating disease, NYHA class III-IV HF"
+    ],
+    "monitoring_parameters": [
+      "DAS28 score at every 1-3 months (target remission DAS28 <2.6 or LDA <3.2)",
+      "CBC, LFTs, creatinine q4-8 weeks initially on MTX, then q1-3 months",
+      "CRP/ESR at 1-3 months",
+      "Annual ophthalmology if on hydroxychloroquine",
+      "TB screening (IGRA/TST) before biologic initiation",
+      "Vaccinations before biologics: influenza, pneumococcal, zoster, COVID-19"
+    ],
+    "safety_alerts": [
+      "Hold MTX for ≥1-2 weeks before and after major surgery",
+      "MTX is absolutely contraindicated in pregnancy (Category X) — contraception mandatory",
+      "Stop DMARD if serious infection develops; restart only when fully recovered",
+      "Biologic agents approximately double the risk of serious infections including opportunistic organisms"
+    ],
+    "disposition": "Outpatient rheumatology with structured follow-up every 1-3 months until target achieved, then every 3-6 months",
+    "content": "The 2021 ACR Rheumatoid Arthritis guideline adopts a treat-to-target (T2T) strategy, requiring disease activity measurement at every visit using a validated composite score (DAS28, CDAI, or SDAI) and treatment escalation if the target of remission (DAS28 below 2.6) or low disease activity (DAS28 below 3.2) is not achieved within 3-6 months. Methotrexate remains the anchor DMARD — initiated at 7.5-10mg/week and escalated to 15-25mg/week as tolerated, given orally or subcutaneously (SC bioavailability is superior at doses above 15mg). Folic acid 1mg daily is a mandatory co-prescription to reduce mucositis, hepatotoxicity, and nausea without compromising MTX efficacy. Short-course bridging corticosteroids (prednisone at the lowest effective dose, tapering within 3 months) provide rapid symptom relief while waiting for DMARD onset. Inadequate MTX response at 3 months requires treatment escalation — the choice between biologic DMARD (anti-TNF: adalimumab, etanercept, infliximab; IL-6 inhibitor: tocilizumab, sarilumab; anti-CD20: rituximab) or JAK inhibitor (tofacitinib, baricitinib, upadacitinib) should be guided by comorbidities, risk factors, and patient preference. Triple DMARD therapy (MTX + hydroxychloroquine + sulfasalazine) is a cost-effective alternative to biologic therapy with comparable efficacy in some patients (O'Dell trial). Pre-biologic mandatory screening includes latent TB (TST or IGRA plus chest X-ray — treat latent TB for 4 weeks minimum before initiating biologic) and hepatitis B serology. Vaccinations must be updated before starting biologics as live vaccines are contraindicated during therapy. JAK inhibitors carry FDA safety concerns regarding venous thromboembolism (particularly with tofacitinib at higher doses) and cardiovascular events in patients above age 50 with cardiovascular risk factors — this population requires careful risk-benefit assessment. Hydroxychloroquine requires annual ophthalmologic surveillance (OCT and visual fields) after 5 years of use due to retinal toxicity risk."
+  },
+  {
+    "id": "GUIDE-014",
+    "guideline_id": "GUIDE-014",
+    "condition": "Hypertensive Emergency Management",
+    "related_conditions": [ "COND-005" ],
+    "source_society": "ACC/AHA / JNC 8",
+    "guideline_year": "2022",
+    "evidence_level": "Class I (Level C)",
+    "primary_recommendation": "Reduce mean arterial pressure by no more than 10-20% in the first hour, then by a further 5-15% over the next 23 hours. Avoid precipitous BP drops — end-organ ischemia can worsen with rapid reduction.",
+    "first_line_treatments": [
+      "IV nicardipine 5 mg/hr titrating to 15 mg/hr (hypertensive encephalopathy, stroke, most presentations)",
+      "IV labetalol 20mg boluses or 1-2 mg/min infusion (aortic dissection, perioperative)",
+      "IV esmolol for aortic dissection (short-acting, precisely titratable)",
+      "IV sodium nitroprusside for refractory or malignant hypertension (cyanide toxicity risk with prolonged use)",
+      "Oral hydralazine or clonidine for less severe or hypertensive urgency presentations"
+    ],
+    "second_line_treatments": [
+      "IV hydralazine 10-20mg for hypertension in pregnancy (pre-eclampsia)",
+      "Phentolamine IV for pheochromocytoma hypertensive crisis",
+      "IV nitroglycerin for hypertension with concurrent ACS or acute pulmonary edema"
+    ],
+    "contraindicated_treatments": [
+      "Sublingual nifedipine (unpredictable BP drop causing ischemic stroke or MI)",
+      "Aggressive BP lowering in acute ischemic stroke without thrombolysis plan (target <220/120)",
+      "Beta-blocker monotherapy in cocaine-induced hypertensive emergency (unopposed alpha stimulation)"
+    ],
+    "monitoring_parameters": [
+      "BP every 5-15 minutes during IV therapy (arterial line preferred)",
+      "Continuous ECG",
+      "Creatinine/BUN at 2, 6, 24 hours (AKI monitoring)",
+      "Urinalysis for proteinuria and hematuria (hypertensive nephropathy)",
+      "Ophthalmologic exam for papilledema",
+      "CT head if neurological symptoms present"
+    ],
+    "safety_alerts": [
+      "Over-aggressive MAP reduction causes ischemic stroke, AKI, and MI — maximum 20-25% MAP reduction in first hour",
+      "Transition to oral antihypertensives as hemodynamics allow — plan oral regimen early",
+      "ICU monitoring required for all IV antihypertensive infusions"
+    ],
+    "disposition": "ICU",
+    "content": "A hypertensive emergency is defined as acute severe hypertension (typically BP above 180/120 mmHg) with evidence of end-organ damage, distinguishing it from hypertensive urgency (markedly elevated BP without end-organ involvement). End-organ manifestations include hypertensive encephalopathy (confusion, papilledema, cortical blindness), acute ischemic or hemorrhagic stroke, aortic dissection, acute decompensated heart failure, acute coronary syndrome, hypertensive nephropathy (hematuria, proteinuria, rising creatinine), and pre-eclampsia/eclampsia. The 2022 ACC/AHA guideline establishes the critical principle that overly rapid blood pressure reduction is as dangerous as the hypertension itself — autoregulation of cerebral, coronary, and renal blood flow is reset at higher pressures in chronically hypertensive patients; rapid normalization can precipitate ischemia in previously perfused territories. The target is MAP reduction of no more than 20-25% in the first hour, with slow continued reduction over the subsequent 23 hours toward a goal BP of approximately 160/100. Agent selection is tailored to end-organ involvement: nicardipine IV (a titratable dihydropyridine calcium channel blocker, 5-15 mg/hr) is preferred for most presentations including hypertensive encephalopathy and stroke; labetalol IV (combined alpha-1 and beta-blocker, 20mg boluses up to 300mg total) is first-line for aortic dissection (reduces both pressure and aortic shear force) and perioperative hypertension; esmolol IV provides rapid-onset, short-acting beta-blockade for aortic dissection requiring precise titration. Sublingual nifedipine is absolutely contraindicated — its unpredictable pharmacokinetics cause precipitous BP drops causing stroke and MI. In cocaine-induced hypertensive emergency, beta-blockers must not be used alone due to risk of unopposed alpha-adrenergic stimulation causing paradoxical hypertension and coronary vasospasm — phentolamine or benzodiazepines are preferred. Pre-eclampsia requires IV labetalol or hydralazine targeting BP below 160/110, with IV magnesium sulfate 4-6g loading dose for seizure prophylaxis and treatment of eclampsia."
+  },
+  {
+    "id": "GUIDE-015",
+    "guideline_id": "GUIDE-015",
+    "condition": "Major Depressive Disorder Treatment",
+    "related_conditions": [ "COND-022" ],
+    "source_society": "APA (American Psychiatric Association)",
+    "guideline_year": "2023",
+    "evidence_level": "Grade A",
+    "primary_recommendation": "Combination of antidepressant pharmacotherapy plus psychotherapy (CBT) is more effective than either alone. SSRI is first-line pharmacotherapy. Allow 4-6 weeks for adequate trial before switching.",
+    "first_line_treatments": [
+      "SSRI: sertraline 50-200mg daily or escitalopram 10-20mg daily (first-line for most patients)",
+      "Cognitive Behavioral Therapy (CBT) — equivalent to medications for mild-moderate MDD; superior in combination",
+      "SNRI: venlafaxine XR 75-225mg or duloxetine 30-60mg daily (preferred if comorbid pain or anxiety)",
+      "Safety assessment: Columbia Suicide Severity Rating Scale at every visit",
+      "Psychoeducation: expected onset 2-4 weeks; full response 4-8 weeks; trial duration minimum 4-6 weeks"
+    ],
+    "second_line_treatments": [
+      "Augmentation: add bupropion, buspirone, lithium, or atypical antipsychotic (quetiapine, aripiprazole)",
+      "Switch within class (SSRI to SSRI) or cross-class (to SNRI, bupropion, or mirtazapine) after failed adequate trial",
+      "TCAs (amitriptyline): effective but lethal in overdose and poor tolerability — reserved for treatment-resistant cases",
+      "MAOIs: reserved for treatment-resistant MDD (strict dietary restrictions required)"
+    ],
+    "contraindicated_treatments": [
+      "MAOIs within 14 days of SSRIs or SNRIs (serotonin syndrome — potentially fatal)",
+      "Antidepressant monotherapy without safety monitoring in patients under 25 (FDA Black Box Warning)",
+      "Initiating antidepressants without screening for bipolar disorder (may precipitate manic switch)"
+    ],
+    "monitoring_parameters": [
+      "PHQ-9 at 2, 4, 8 weeks then monthly",
+      "Suicidality — Columbia suicide scale q2-4 weeks for first 3 months (especially age <25)",
+      "Side effects at each visit",
+      "Sexual dysfunction screening",
+      "Weight and metabolic parameters if on atypical antipsychotics",
+      "Serum sodium in elderly (SIADH with SSRIs)"
+    ],
+    "safety_alerts": [
+      "SSRIs/SNRIs carry FDA Black Box Warning for increased suicidality in patients under 25 — monitor weekly for first 4 weeks",
+      "Taper antidepressants gradually on discontinuation — abrupt cessation causes discontinuation syndrome",
+      "Screen for bipolar disorder before starting — antidepressant monotherapy can trigger mania"
+    ],
+    "disposition": "Outpatient psychiatry; hospitalize if active suicidal ideation with plan or intent, psychotic features, or inability to care for self",
+    "content": "The 2023 APA Major Depressive Disorder Practice Guideline updates treatment recommendations based on cumulative evidence from large meta-analyses and pragmatic trials including STAR*D. MDD diagnosis requires at least 5 of 9 DSM-5 criteria for 2 or more weeks with functional impairment, including at least depressed mood or anhedonia. PHQ-9 scoring quantifies severity: 5-9 mild, 10-14 moderate, 15-19 moderately severe, 20-27 severe — guides initial treatment intensity. SSRIs are the established first-line pharmacotherapy due to favorable efficacy-to-tolerability ratio. Sertraline and escitalopram have the strongest evidence base with the best tolerability profiles across network meta-analyses. Escitalopram's uniquely clean pharmacokinetic profile (minimal CYP interactions) makes it preferred in complex polypharmacy patients. SNRIs (venlafaxine, duloxetine) are preferred when comorbid pain syndromes (fibromyalgia, diabetic neuropathy) or anxiety disorders are present. The minimum adequate trial is 4-6 weeks at therapeutic dose — insufficient duration is the most common reason for apparent treatment failure. Combination pharmacotherapy plus CBT achieves remission in approximately 40-50% of patients with moderate-to-severe MDD versus 25-30% with either alone. If the first antidepressant fails, strategies include switching to another agent in the same class or augmenting with lithium, atypical antipsychotics (quetiapine, aripiprazole, brexpiprazole), or bupropion. MAOIs require a 14-day washout from SSRIs/SNRIs to prevent fatal serotonin syndrome. Bipolar screening (personal or family history of mania or hypomania, early onset, psychotic features) must precede antidepressant initiation — antidepressant monotherapy in bipolar disorder can precipitate mania and rapid cycling. The FDA Black Box Warning mandates weekly monitoring for suicidality in patients under 25 for the first 4 weeks and biweekly for the next 4 weeks. Gradual tapering over 4-8 weeks on discontinuation prevents discontinuation syndrome (flu-like symptoms, electric shock sensations, insomnia, anxiety)."
+  },
+  {
+    "id": "GUIDE-016",
+    "guideline_id": "GUIDE-016",
+    "condition": "Acute Pancreatitis Management",
+    "related_conditions": [ "COND-024" ],
+    "source_society": "AGA / ACG",
+    "guideline_year": "2022",
+    "evidence_level": "Strong Recommendation (Level 1A)",
+    "primary_recommendation": "Aggressive early fluid resuscitation with Lactated Ringer's (LR) is recommended over Normal Saline. Early oral feeding as tolerated improves outcomes. Monitor severity with BISAP or Ranson criteria.",
+    "first_line_treatments": [
+      "IV LR at 250-500 mL/hr for first 12-24 hours (LR superior to NS — reduces SIRS incidence)",
+      "Goal-directed resuscitation: target urine output 0.5-1 mL/kg/hr, HR <120, MAP 65-85",
+      "NPO initially; advance to low-fat soft diet as tolerated (early oral feeding within 24h preferred)",
+      "Analgesia: IV hydromorphone or fentanyl PCA for pain control",
+      "Identify etiology: RUQ ultrasound within 24 hours (gallstones), lipid panel (hypertriglyceridemia), alcohol history"
+    ],
+    "second_line_treatments": [
+      "Enteral (NG or NJ) tube feeding if oral intake not tolerated by 72 hours",
+      "ERCP within 24 hours if concurrent cholangitis or persistent biliary obstruction",
+      "Early cholecystectomy during same hospitalization for mild gallstone pancreatitis",
+      "Insulin infusion for hypertriglyceridemic pancreatitis (triglycerides >1000 mg/dL)",
+      "ICU and surgical consult for necrotizing pancreatitis with infected necrosis"
+    ],
+    "contraindicated_treatments": [
+      "Prophylactic antibiotics (no benefit in sterile necrosis — increases resistant organism risk)",
+      "TPN over enteral nutrition (higher infection and mortality risk)",
+      "Early cholecystectomy in severe pancreatitis (defer until recovery — 6+ weeks)"
+    ],
+    "monitoring_parameters": [
+      "Urine output q1h",
+      "BMP (calcium, glucose, BUN) q6-8h",
+      "WBC, CRP, LDH at 48 hours (Ranson criteria completion)",
+      "CT abdomen with contrast at 48-72 hours if clinical deterioration (assess for necrosis)",
+      "SIRS criteria q6h (RR, HR, temp, WBC)"
+    ],
+    "safety_alerts": [
+      "Hypoperfusion in the first 12 hours drives necrotizing pancreatitis — aggressive early fluids are critical",
+      "Infected pancreatic necrosis (fever + CT worsening at week 2-4): CT-guided FNA for microbiologic diagnosis; carbapenem coverage",
+      "BISAP score ≥3 or Ranson ≥3 predicts severe pancreatitis — ICU-level care required"
+    ],
+    "disposition": "ICU for severe/necrotizing pancreatitis; hospital step-down for moderate; outpatient for mild (Ranson 0-2) if oral intake adequate",
+    "content": "The 2022 AGA/ACG Acute Pancreatitis guideline integrates recent clinical trial evidence to update fluid resuscitation, nutrition, and antibiotic recommendations. The WATERFALL trial (NEJM 2022) definitively established Lactated Ringer's as superior to normal saline for initial resuscitation — LR reduces the incidence of SIRS, a driver of local and systemic complications, by providing a balanced electrolyte solution that avoids hyperchloremic metabolic acidosis. The recommended rate of 250-500 mL/hr targets physiologic endpoints: urine output 0.5-1 mL/kg/hr, heart rate below 120, MAP 65-85 mmHg, and BUN decrease over 24 hours. Over-resuscitation causes abdominal compartment syndrome and respiratory failure — goal-directed resuscitation (fluid responsiveness reassessment every 6 hours) prevents iatrogenic harm. Regarding nutrition, the PYTHON trial and multiple meta-analyses established that early oral feeding (low-fat soft diet within 24 hours in tolerant patients) shortens hospital stay, reduces infections, and does not worsen pancreatitis outcomes compared to prolonged NPO — the dogma of resting the pancreas is outdated. When oral feeding is not tolerated within 72 hours, enteral tube feeding via nasogastric or nasojejunal route is mandatory — it is significantly superior to parenteral nutrition (TPN) in reducing infectious complications, multi-organ failure, and mortality. Prophylactic antibiotics for sterile pancreatic necrosis are not recommended — they do not reduce infection rates or mortality but select for resistant organisms. Infected necrosis (suggested by clinical deterioration at week 2-4 with fever and rising CRP, confirmed by CT-guided FNA revealing microorganisms) requires antimicrobial therapy and minimally invasive step-up drainage (video-assisted retroperitoneal debridement). ERCP within 24 hours of presentation is indicated only for concurrent cholangitis or persistent biliary obstruction, not for gallstone pancreatitis without biliary complication. Gallstone pancreatitis requires cholecystectomy during the same hospitalization for mild disease to prevent recurrence."
+  },
+  {
+    "id": "GUIDE-017",
+    "guideline_id": "GUIDE-017",
+    "condition": "Clostridioides difficile Infection (CDI) Management",
+    "related_conditions": [ "COND-044" ],
+    "source_society": "IDSA / SHEA",
+    "guideline_year": "2021",
+    "evidence_level": "Strong Recommendation (Level I)",
+    "primary_recommendation": "Fidaxomicin 200mg BID x10 days is preferred over oral vancomycin for initial non-severe CDI and first recurrence due to significantly lower recurrence rates. Metronidazole is no longer first-line therapy.",
+    "first_line_treatments": [
+      "Non-severe CDI (WBC <15,000; Cr <1.5): fidaxomicin 200mg PO BID x10 days (preferred) OR oral vancomycin 125mg QID x10 days",
+      "Severe CDI (WBC >15,000 OR Cr >1.5): oral vancomycin 125mg QID x10 days",
+      "Fulminant CDI (hypotension, ileus, toxic megacolon): oral vancomycin 500mg QID + IV metronidazole 500mg TID + vancomycin enemas if ileus present",
+      "Discontinue causative antibiotic as soon as clinically feasible",
+      "Contact precautions: gown and gloves; hand washing with soap and water (not alcohol — alcohol-based hand rubs do not kill C. diff spores)"
+    ],
+    "second_line_treatments": [
+      "FMT (fecal microbiota transplant) for second or subsequent recurrence (90% cure rate, superior to antibiotics)",
+      "Bezlotoxumab (Zinplava) 10mg/kg IV single dose for high-risk recurrence prevention (concurrent with antibiotics)",
+      "Fidaxomicin extended-pulsed regimen (EXTEND study) for first recurrence"
+    ],
+    "contraindicated_treatments": [
+      "IV metronidazole monotherapy for any CDI severity (insufficient GI drug concentrations)",
+      "Anti-motility agents (loperamide) — worsen toxic megacolon risk by slowing colonic transit",
+      "Testing for cure by PCR (may remain positive weeks after clinical resolution)"
+    ],
+    "monitoring_parameters": [
+      "Stool frequency (target <3 unformed stools per day within 48-72 hours of treatment)",
+      "WBC trend",
+      "Abdominal exam (rebound, distension — toxic megacolon signs)",
+      "KUB or CT abdomen if worsening (toxic megacolon = colonic diameter >6cm)",
+      "Serum creatinine and potassium (electrolyte losses from diarrhea)"
+    ],
+    "safety_alerts": [
+      "Do NOT repeat test for C. diff after treatment — PCR may remain positive for weeks with no disease recurrence",
+      "PPIs may increase CDI risk and recurrence — reassess PPI indication during treatment",
+      "Alcohol-based hand sanitizers do NOT kill C. diff spores — soap and water handwashing is mandatory for all contacts"
+    ],
+    "disposition": "Hospital for severe/fulminant CDI; outpatient for non-severe if clinically stable and taking oral medications",
+    "content": "The 2021 IDSA/SHEA CDI guideline represents a paradigm shift driven by the OPCDT and OPT-80 trials demonstrating fidaxomicin's superior recurrence prevention compared to oral vancomycin. Fidaxomicin, a minimally absorbed macrocyclic antibiotic with narrow-spectrum C. difficile activity, achieves equivalent cure rates but significantly lower recurrence rates (15% vs 25% for non-ribotype 027 strains) by better preserving Bacteroides and other protective commensal flora. This microbiome-sparing mechanism is clinically crucial — CDI recurrence substantially increases morbidity and rarely, mortality. The guideline abandons metronidazole as a first-line option based on cumulative evidence of inferior efficacy, particularly for severe CDI where GI drug concentrations are insufficient when ileus prevents luminal drug delivery. For fulminant CDI (hypotension, ileus, toxic megacolon requiring vasopressors), oral/rectal vancomycin plus IV metronidazole is the only combination that addresses both luminal and systemic components — IV metronidazole achieves therapeutic concentrations in inflamed colonic mucosa even with poor luminal drug delivery. Colectomy is required for perforation or refractory toxic megacolon. For recurrent CDI, the guideline strongly recommends FMT (fecal microbiota transplant) — a curative therapy with 90% success by restoring the disrupted gut microbiome — for patients with a second or subsequent recurrence. Bezlotoxumab, a monoclonal antibody against C. difficile toxin B, given as a single IV infusion during the antibiotic course, significantly reduces recurrence in high-risk patients (MODIFY I/II trials). Contact precautions with gown and gloves plus soap-and-water handwashing (mandatory because alcohol-based sanitizers do not kill spores) are essential for infection control. PPIs should be deprescribed or changed to H2 blockers when possible, as they increase CDI risk by altering gastric and intestinal pH. Post-treatment PCR testing for cure is contraindicated — test only if clinical symptoms recur."
+  },
+  {
+    "id": "GUIDE-018",
+    "guideline_id": "GUIDE-018",
+    "condition": "COPD Stable Management (GOLD Guidelines)",
+    "related_conditions": [ "COND-036" ],
+    "source_society": "GOLD (Global Initiative for Chronic Obstructive Lung Disease)",
+    "guideline_year": "2024",
+    "evidence_level": "Evidence A/B (GOLD grouping)",
+    "primary_recommendation": "Pharmacotherapy guided by GOLD ABCD group based on symptoms (mMRC/CAT) and exacerbation history. Smoking cessation is the single most effective intervention for all COPD patients.",
+    "first_line_treatments": [
+      "All COPD patients: smoking cessation (most effective — slows FEV1 decline and reduces mortality)",
+      "Group A (low symptoms, low exacerbation risk): SABA or SAMA PRN (bronchodilator as needed)",
+      "Group B (high symptoms, low exacerbation risk): LAMA alone (tiotropium) preferred as initial long-acting bronchodilator",
+      "Group E (high exacerbation risk, ≥2 moderate or ≥1 severe per year): LAMA + LABA (dual bronchodilation)",
+      "Add ICS to LAMA+LABA only if blood eosinophils ≥300 cells/µL and exacerbation history (triple therapy)"
+    ],
+    "second_line_treatments": [
+      "Supplemental O2 if PaO2 ≤55 mmHg or SpO2 ≤88% at rest (≥15 hr/day — only pharmacotherapy to reduce COPD mortality)",
+      "Pulmonary rehabilitation for all symptomatic patients with dyspnea on exertion",
+      "Roflumilast (PDE4 inhibitor) for FEV1 <50% with chronic bronchitis and frequent exacerbations",
+      "Azithromycin 250mg daily for recurrent exacerbators (antibiotic stewardship considerations)"
+    ],
+    "contraindicated_treatments": [
+      "ICS monotherapy in COPD without asthma overlap (increased pneumonia risk without bronchodilator benefit)",
+      "Long-term oral corticosteroids (no mortality benefit, significant harm — osteoporosis, diabetes, infection)",
+      "Sedatives and anxiolytics without palliative context (respiratory depression risk)"
+    ],
+    "monitoring_parameters": [
+      "Spirometry (FEV1, FEV1/FVC) annually",
+      "Symptom burden: mMRC dyspnea scale and CAT score at each visit",
+      "Frequency and severity of exacerbations per year",
+      "Blood eosinophil count (guides ICS use — check annually)",
+      "6-minute walk test for functional capacity assessment",
+      "SpO2 at rest and exertion (assess O2 therapy need)"
+    ],
+    "safety_alerts": [
+      "ICS use in COPD associated with increased pneumonia risk — weigh carefully; monitor for signs of pneumonia",
+      "Supplemental oxygen in COPD: target SpO2 88-92% (avoid hyperoxia — blunts hypoxic ventilatory drive, worsens CO2 retention)",
+      "Acute COPD exacerbation: short-acting bronchodilators + systemic steroids (prednisone 40mg x5 days) + antibiotics if purulent sputum"
+    ],
+    "disposition": "Outpatient for stable COPD; hospitalize if GOLD-defined severe exacerbation criteria met (SpO2 <90%, use of accessory muscles, altered mental status)",
+    "content": "The 2024 GOLD COPD guideline simplifies the treatment algorithm by replacing the former ABCD assessment tool with an ABE system, grouping patients by exacerbation history as the primary driver of therapy escalation (GOLD groups A, B, and E, where E denotes elevated exacerbation risk). The most impactful intervention for any COPD patient remains smoking cessation — it is the only intervention that measurably slows the accelerated FEV1 decline that defines COPD progression; varenicline and combined nicotine replacement are most effective. Initial bronchodilator therapy is guided by symptom burden and exacerbation frequency. Long-acting muscarinic antagonists (LAMAs, tiotropium being the prototype) are the preferred class based on superiority over LABAs in exacerbation prevention (UPLIFT trial). For patients with persistent dyspnea or ongoing exacerbations, LAMA plus LABA combination (e.g., umeclidinium/vilanterol, tiotropium/olodaterol) provides additive bronchodilation superior to either agent alone. Inhaled corticosteroids are added as triple therapy (ICS/LABA/LAMA) only in patients with blood eosinophils above 300 cells/µL and exacerbation history — the IMPACT trial demonstrated triple therapy superiority in this population; ICS use without these indications increases pneumonia risk without significant benefit. Supplemental oxygen therapy (LTOT) for resting hypoxemia (PaO2 ≤55 or SpO2 ≤88%) reduces pulmonary hypertension, polycythemia, and mortality — the only COPD pharmacotherapy proven to reduce mortality alongside smoking cessation. Target SpO2 88-92% to prevent hyperoxia-induced hypercapnia and respiratory depression. Pulmonary rehabilitation improves exercise tolerance, quality of life, and reduces hospitalizations across all COPD severity stages. Acute COPD exacerbations are treated with short-acting bronchodilators (SABA/SAMA), a 5-day course of systemic steroids (prednisone 40mg), and antibiotics for purulent sputum (amoxicillin-clavulanate or doxycycline). NIV (BiPAP) is indicated for acute hypercapnic respiratory failure (pH below 7.35 with PaCO2 above 45) and significantly reduces need for intubation and in-hospital mortality."
+  },
+  {
+    "id": "GUIDE-019",
+    "guideline_id": "GUIDE-019",
+    "condition": "Upper GI Bleeding Management",
+    "related_conditions": [ "COND-047" ],
+    "source_society": "ACG / BSG",
+    "guideline_year": "2021",
+    "evidence_level": "Strong Recommendation (Level 1A)",
+    "primary_recommendation": "Risk stratify with Glasgow-Blatchford Score (GBS). Hemodynamically unstable patients require immediate resuscitation and urgent EGD within 12 hours. Stable high-risk patients: EGD within 24 hours.",
+    "first_line_treatments": [
+      "Resuscitation: 2 large-bore IVs; IV fluid bolus 500-1000 mL NS; type and crossmatch; Foley catheter",
+      "Transfuse pRBCs if Hgb <7 g/dL (or <9 if massive bleed or cardiac disease) — restrictive transfusion strategy",
+      "IV PPI: pantoprazole 80 mg IV bolus then 8 mg/hr continuous infusion x72h (if peptic ulcer suspected)",
+      "Variceal bleeding suspected: octreotide 50 mcg IV bolus then 50 mcg/hr infusion + IV ceftriaxone 1g q24h x7 days (SBP prophylaxis)",
+      "EGD within 24 hours (12 hours if hemodynamically unstable or active continuous bleeding)"
+    ],
+    "second_line_treatments": [
+      "Endoscopic hemostasis: dual therapy (epinephrine injection + clip or coagulation) for bleeding ulcers with high-risk stigmata",
+      "TIPS (transjugular intrahepatic portosystemic shunt) for refractory variceal bleeding",
+      "Sengstaken-Blakemore/Minnesota tube as bridge for massive variceal bleed if endoscopy unavailable",
+      "Angioembolization or surgery for refractory non-variceal bleeding after failed endoscopy"
+    ],
+    "contraindicated_treatments": [
+      "Routine prophylactic FFP (no benefit unless active coagulopathy with INR >2 and active bleeding)",
+      "Indefinite discontinuation of antiplatelet or anticoagulant therapy without weighing cardiac/thromboembolic risk",
+      "Delaying EGD beyond 24 hours in high-risk GBS patients"
+    ],
+    "monitoring_parameters": [
+      "Hemoglobin q4-6h while actively bleeding",
+      "BUN:creatinine ratio trend (rising BUN:Cr indicates ongoing protein digestion from continued bleeding)",
+      "Vital signs q1h",
+      "Urine output q1h (target >0.5 mL/kg/hr)",
+      "Repeat EGD at 72 hours if high-risk endoscopic stigmata (visible vessel, adherent clot)"
+    ],
+    "safety_alerts": [
+      "Glasgow-Blatchford Score 0 = safe for outpatient management; GBS ≥1 requires hospital admission",
+      "After peptic ulcer hemostasis: resume aspirin at 3-5 days (do not stop indefinitely — cardiac risk outweighs GI risk with PPI co-prescription)",
+      "After variceal band ligation: repeat EGD in 2-4 weeks for complete variceal eradication program"
+    ],
+    "disposition": "ICU if hemodynamically unstable; IMCU/monitored floor if stable high-risk (GBS ≥6); ED observation if GBS 1-5",
+    "content": "The 2021 ACG/BSG Upper GI Bleeding guideline integrates risk stratification with endoscopic and pharmacologic management to optimize outcomes and resource utilization. The Glasgow-Blatchford Score (GBS) uses BUN, hemoglobin, systolic BP, heart rate, melena, syncope, hepatic disease, and cardiac failure to stratify risk pre-endoscopy — a GBS of zero identifies low-risk patients safe for outpatient endoscopy without admission, while higher scores predict need for intervention and transfusion. AIMS65 and Rockford scores predict in-hospital mortality. Initial resuscitation: two large-bore peripheral IVs (16-gauge or larger), aggressive IV fluid resuscitation, blood type and screen, and urgent cross-match. The TRIGGER trial established the restrictive transfusion strategy (Hgb threshold of 7 g/dL) reduces mortality in non-massively bleeding patients compared to liberal transfusion — lower hemoglobin target reduces portal pressure and rebleeding risk in variceal hemorrhage. High-dose IV PPI therapy (pantoprazole 80mg bolus then 8mg/hr infusion) after endoscopic hemostasis of peptic ulcers maintains intragastric pH above 6, stabilizing clot formation and reducing the rebleeding rate by 50% (META analysis). IV erythromycin 250mg given 30-90 minutes before endoscopy promotes gastric emptying by stimulating motilin receptors, clearing the fundus of blood and improving visualization — it is recommended before urgent EGD for suspected upper GI bleeding. Variceal bleeding requires combined pharmacologic (octreotide — splanchnic vasoconstriction) and antibiotic prophylaxis (ceftriaxone reduces bacteremia-driven re-bleeding and mortality) initiated immediately upon suspicion. Endoscopic band ligation is superior to sclerotherapy for esophageal varices. For patients on chronic antiplatelet therapy (aspirin for cardiovascular indication), aspirin should be resumed within 3-5 days of hemostasis with PPI co-prescription — prolonged discontinuation increases major cardiovascular events (MI, stent thrombosis) with risk far exceeding rebleeding risk."
+  },
+  {
+    "id": "GUIDE-020",
+    "guideline_id": "GUIDE-020",
+    "condition": "Anaphylaxis Emergency Management",
+    "related_conditions": [ "COND-040" ],
+    "source_society": "WAO / AAAAI / ACAAI",
+    "guideline_year": "2022",
+    "evidence_level": "Grade A",
+    "primary_recommendation": "Intramuscular epinephrine 0.3-0.5mg (1:1000) into the anterolateral thigh is the FIRST and most critical treatment. There is NO contraindication to epinephrine in anaphylaxis. All other treatments are adjuncts only.",
+    "first_line_treatments": [
+      "Epinephrine 0.3-0.5 mg IM (1:1000 concentration = 1mg/mL) anterolateral thigh — IMMEDIATELY",
+      "Remove or stop the trigger if possible (stop IV infusion of causative agent, remove insect stinger)",
+      "Position patient supine with legs elevated (or semi-recumbent if dyspnea) — do not stand the patient up",
+      "Call emergency response / activate code",
+      "IV access: 1-2L NS IV bolus for distributive hypotension",
+      "Supplemental oxygen: target SpO2 >95%",
+      "Repeat epinephrine IM every 5-15 minutes PRN — no maximum dose in life-threatening anaphylaxis"
+    ],
+    "second_line_treatments": [
+      "Diphenhydramine 50mg IV or PO (H1 blocker — adjunct for urticaria/pruritus; NOT a substitute for epinephrine)",
+      "Ranitidine 50mg IV (H2 blocker — adjunct)",
+      "Methylprednisolone 125mg IV (prevents biphasic reaction — delayed onset, not helpful acutely)",
+      "Albuterol 2.5-5mg nebulized for bronchospasm persisting after epinephrine",
+      "Glucagon 1mg IV for refractory hypotension in beta-blocker-treated patients (bypasses beta-receptor blockade)",
+      "Vasopressors (norepinephrine, vasopressin) for epinephrine-refractory shock"
+    ],
+    "contraindicated_treatments": [
+      "Using antihistamines as first-line or as a substitute for epinephrine — fatal delays occur",
+      "Delaying epinephrine to await test results or establish IV access",
+      "Discharging before adequate observation period (minimum 4-6 hours for biphasic reaction risk)"
+    ],
+    "monitoring_parameters": [
+      "Vital signs q5-15 min for first 30 minutes, then q30 min",
+      "SpO2 and respiratory status continuously",
+      "Mental status (confusion indicates cerebral hypoperfusion)",
+      "Serum tryptase within 1-2 hours of onset (confirms anaphylaxis diagnosis; does not guide acute treatment)"
+    ],
+    "safety_alerts": [
+      "Biphasic anaphylaxis occurs in 5-20% of cases — observe minimum 4-6 hours after complete symptom resolution",
+      "Discharge requires 2 epinephrine auto-injectors (EpiPen 0.3mg adult; 0.15mg pediatric) plus written action plan",
+      "Refer to allergist within 1-4 weeks for trigger identification and immunotherapy assessment",
+      "Beta-blocker use increases anaphylaxis severity and reduces epinephrine efficacy — glucagon 1mg IV is the antidote for refractory hypotension in this population"
+    ],
+    "disposition": "ED observation minimum 4-6 hours after symptom resolution; ICU if refractory shock or severe bronchospasm; outpatient allergology follow-up within 1-4 weeks",
+    "content": "The 2022 WAO/AAAAI Anaphylaxis guideline reinforces epinephrine's status as the only effective first-line treatment — antihistamines, corticosteroids, and bronchodilators are adjuncts that must never delay or substitute for epinephrine. Anaphylaxis is a severe, potentially fatal, generalized hypersensitivity reaction defined clinically by the rapid onset of life-threatening airway compromise, breathing difficulty, cardiovascular collapse, or a combination of skin/mucosal changes with end-organ involvement. The diagnostic criteria require: (1) skin/mucosal involvement plus respiratory compromise or hypotension; (2) two or more system involvement (skin, respiratory, cardiovascular, GI) after allergen exposure; or (3) systolic BP drop alone after known allergen exposure. Epinephrine 0.3-0.5mg (adult) IM into the anterolateral thigh achieves peak plasma levels significantly faster than subcutaneous or deltoid injection — the thigh has greater muscle mass and blood flow. There is absolutely no contraindication to epinephrine when anaphylaxis is suspected — the risk of withholding it always exceeds any theoretical cardiac risk. EpiPen auto-injectors must be prescribed in pairs at every anaphylaxis discharge visit — two devices are required because refractory cases need a second dose, and one device may malfunction. Antihistamines (diphenhydramine, loratadine) treat only cutaneous manifestations (urticaria, pruritus) — they have no effect on laryngeal edema, bronchospasm, or hypotension and deaths have been attributed to treating anaphylaxis with antihistamines instead of epinephrine. Corticosteroids prevent biphasic anaphylaxis but have delayed onset (4-6 hours) and are not acute rescue therapy. Biphasic anaphylaxis — recurrence of symptoms after apparent resolution without re-exposure — occurs in 5-20% at 1-72 hours, mandating hospital observation for a minimum of 4-6 hours. In patients on beta-blockers who fail to respond to epinephrine (due to competitive beta-receptor blockade), glucagon 1mg IV bypasses the blocked receptor via its own adenylyl cyclase pathway. Serum tryptase measured 1-2 hours after onset confirms the diagnosis retrospectively but does not change acute management. All patients require allergy referral within 4 weeks for trigger identification and consideration of allergen immunotherapy."
+  }
+]

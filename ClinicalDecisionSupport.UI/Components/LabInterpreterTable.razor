@@ -1,0 +1,61 @@
+﻿@using ClinicalDecisionSupport.UI.Models
+
+@if (Data != null)
+{
+    <table class="lab-table">
+        <thead>
+            <tr>
+                <th>Test</th>
+                <th>Value</th>
+                <th>Status</th>
+                <th>Interpretation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lab in Data.LabFindings)
+            {
+                <tr class="@GetRowClass(lab.Status)">
+                    <td>@lab.Test</td>
+                    <td>@lab.Value</td>
+                    <td>@lab.Status</td>
+                    <td>@lab.Interpretation</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (Data.CriticalAlerts != null && Data.CriticalAlerts.Any())
+    {
+        <div class="lab-alerts">
+            <strong>Critical Alerts</strong>
+            <ul>
+                @foreach (var alert in Data.CriticalAlerts)
+                {
+                    <li>@alert</li>
+                }
+            </ul>
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Data.Summary))
+    {
+        <div class="lab-summary">
+            <strong>Summary:</strong> @Data.Summary
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public LabInterpretation? Data { get; set; }
+
+    private static string GetRowClass(string status)
+    {
+        return status switch
+        {
+            "Critical" => "lab-critical",
+            "Abnormal" => "lab-abnormal",
+            _ => "lab-normal"
+        };
+    }
+}

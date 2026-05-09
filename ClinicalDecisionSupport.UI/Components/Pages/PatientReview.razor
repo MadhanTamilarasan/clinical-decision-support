@@ -1,0 +1,231 @@
+@page "/patient-review/{PatientId}"
+@using ClinicalDecisionSupport.UI.Models
+@using ClinicalDecisionSupport.UI.Services
+@attribute [Authorize]
+@inject HttpClient Http
+@inject UserPersonaService PersonaService
+@inject NavigationManager Navigation
+@implements IDisposable
+
+<PageTitle>Patient Review | ClinicalDS</PageTitle>
+
+<div class="fade-in">
+    <div class="mb-4">
+        <a href="/patient-select" class="btn btn-sm btn-link p-0 mb-2 text-decoration-none">
+            <i class="bi bi-arrow-left"></i> Back to Selection
+        </a>
+        <h3 class="mb-1">Review Patient Information</h3>
+        <p class="text-muted">Verify clinical context before initiating multi-agent analysis.</p>
+    </div>
+
+    @if (isLoading)
+    {
+        <div class="d-flex flex-column align-items-center justify-content-center py-5">
+            <div class="spinner-border text-primary mb-3" role="status"></div>
+            <p class="text-muted">Fetching patient context from FHIR...</p>
+        </div>
+    }
+    else if (loadError)
+    {
+        <div class="medical-card border-danger bg-danger bg-opacity-10 p-4 text-center">
+            <i class="bi bi-exclamation-octagon text-danger fs-1 mb-3"></i>
+            <h5 class="text-danger">Failed to Fetch Patient</h5>
+            <p class="mb-0">Could not retrieve records for ID: <strong>@PatientId</strong>. Please verify the FHIR server status and your credentials.</p>
+            <button class="btn btn-outline-danger mt-3" @onclick="() => Navigation.NavigateTo(Navigation.Uri, true)">Retry</button>
+        </div>
+    }
+    else if (Patient != null)
+    {
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="medical-card">
+                    <div class="medical-card-header">
+                        <h5 class="mb-0">Demographics</h5>
+                        <i class="bi bi-person-vcard text-muted"></i>
+                    </div>
+                    <div class="medical-card-body">
+                        <div class="mb-3">
+                            <div class="small text-muted mb-1">Patient ID</div>
+                            <div class="fw-bold">@Patient.PatientId</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="small text-muted mb-1">Gender</div>
+                            <div class="fw-bold text-capitalize">@Patient.Demographics.Gender</div>
+                        </div>
+                        <div>
+                            <div class="small text-muted mb-1">Date of Birth</div>
+                            <div class="fw-bold">@Patient.Demographics.BirthDate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="medical-card">
+                    <div class="medical-card-header">
+                        <h5 class="mb-0">Latest Vitals</h5>
+                        <i class="bi bi-activity text-muted"></i>
+                    </div>
+                    <div class="medical-card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            @foreach(var obs in Patient.Observations)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                    <span class="text-muted">@obs.Key</span>
+                                    <span class="fw-bold">@obs.Value</span>
+                                </li>
+                            }
+                            @if (!Patient.Observations.Any())
+                            {
+                                <li class="list-group-item p-3 text-center text-muted">No vitals reported</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="medical-card">
+                    <div class="medical-card-header">
+                        <h5 class="mb-0">Clinical Summary</h5>
+                        <i class="bi bi-file-earmark-medical text-muted"></i>
+                    </div>
+                    <div class="medical-card-body">
+                        <h6 class="fw-bold mb-3">Known Conditions</h6>
+                        <div class="d-flex flex-wrap gap-2 mb-4">
+                            @foreach(var condition in Patient.Conditions)
+                            {
+                                <span class="persona-badge bg-secondary">@condition</span>
+                            }
+                            @if (!Patient.Conditions.Any())
+                            {
+                                <span class="text-muted italic">No conditions on file</span>
+                            }
+                        </div>
+
+                        <h6 class="fw-bold mb-3">Current Medications</h6>
+                        <ul class="list-group list-group-flush mb-4">
+                            @foreach(var med in Patient.Medications)
+                            {
+                                <li class="list-group-item px-0 border-0">
+                                    <i class="bi bi-capsule text-primary me-2"></i> @med
+                                </li>
+                            }
+                            @if (!Patient.Medications.Any())
+                            {
+                                <li class="list-group-item px-0 border-0 text-muted">No active medications</li>
+                            }
+                        </ul>
+
+                        <h6 class="fw-bold mb-3">Allergies & Intolerances</h6>
+                        <div class="d-flex flex-wrap gap-2 mb-4">
+                            @foreach(var allergy in Patient.Allergies)
+                            {
+                                <span class="persona-badge bg-danger bg-opacity-75">@allergy</span>
+                            }
+                            @if (!Patient.Allergies.Any())
+                            {
+                                <span class="text-muted italic">No allergies reported</span>
+                            }
+                        </div>
+
+                        <h6 class="fw-bold mb-3">Laboratory Results</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm clinical-table mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Test</th>
+                                        <th>Result</th>
+                                        <th>Unit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var lab in Patient.Labs)
+                                    {
+                                        <tr>
+                                            <td class="small">@lab.TestName</td>
+                                            <td class="fw-bold">@lab.Value</td>
+                                            <td class="text-muted small">@lab.Unit</td>
+                                        </tr>
+                                    }
+                                    @if (!Patient.Labs.Any())
+                                    {
+                                        <tr>
+                                            <td colspan="3" class="text-center text-muted small py-3">No laboratory records found</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                @if (PersonaService.CurrentRole == UserRole.Physician)
+                {
+                    <div class="d-flex gap-3 mt-4">
+                        <a href="/assessment-run/@PatientId" class="btn btn-primary btn-lg shadow-sm flex-grow-1">
+                            <i class="bi bi-play-circle-fill me-2"></i> Initiate Multi-Agent Assessment
+                        </a>
+                        <button class="btn btn-outline-info btn-lg shadow-sm">
+                            <i class="bi bi-share me-2"></i> Consult Specialist
+                        </button>
+                    </div>
+                }
+                else if (PersonaService.CurrentRole == UserRole.Specialist)
+                {
+                    <div class="d-grid mt-4">
+                        <button class="btn btn-purple btn-lg shadow-sm text-white" style="background-color: var(--bs-purple)">
+                            <i class="bi bi-journal-check me-2"></i> Submit Specialist Opinion
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning mt-4 d-flex align-items-center">
+                        <i class="bi bi-lock-fill fs-4 me-3"></i>
+                        <div>
+                            Only <strong>Physicians</strong> are authorized to trigger clinical reasoning agents. 
+                            Your current role is <strong>@PersonaService.CurrentRole</strong>.
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string PatientId { get; set; } = string.Empty;
+
+    private PatientContextModel? Patient;
+    private bool isLoading = true;
+    private bool loadError = false;
+
+    protected override void OnInitialized()
+    {
+        PersonaService.OnRoleChanged += StateHasChanged;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        isLoading = true;
+        loadError = false;
+        try
+        {
+            Patient = await Http.GetFromJsonAsync<PatientContextModel>($"api/clinical-assessment/patient/{PatientId}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching patient: {ex.Message}");
+            loadError = true;
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    public void Dispose()
+    {
+        PersonaService.OnRoleChanged -= StateHasChanged;
+    }
+}
